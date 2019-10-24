@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Tree from 'react-tree-graph'
+import { Paper } from '@material-ui/core';
+
 import NewNodeForm from './NewNodeForm';
 export default function BuildTree(props) {
     const [showNewNodeForm, setNewNodeFormOpen] = useState(false);
@@ -75,31 +77,33 @@ export default function BuildTree(props) {
 
     return (
 
+
         <div className="custom-container">
-            {showNewNodeForm ?
-                <NewNodeForm
-                    setNewNodeFormOpen={setNewNodeFormOpen}
-                    addNode={addNode}
-                    clickedNode={clickedNode}
+            <Paper style={{ maxHeight: window.innerHeight * .85, overflow: 'auto' }}>
+                {showNewNodeForm ?
+                    <NewNodeForm
+                        setNewNodeFormOpen={setNewNodeFormOpen}
+                        addNode={addNode}
+                        clickedNode={clickedNode}
+                    />
+                    : null}
+                <Tree
+                    nodeRadius={15}
+                    data={data}
+                    height={678}
+                    width={678}
+                    svgProps={{
+                        transform: 'rotate(270)',
+                        className: 'custom'
+                    }}
+                    textProps={{
+                        transform: 'rotate(90)',
+                    }}
+                    circleProps={{
+                        className: 'ball'
+                    }}
                 />
-                : null}
-            <Tree
-                nodeRadius={15}
-                margins={{ top: 20, bottom: 10, left: 20, right: 200 }}
-                data={data}
-                height={800}
-                width={800}
-                svgProps={{
-                    transform: 'rotate(270)',
-                    className: 'custom'
-                }}
-                textProps={{
-                    transform: 'rotate(90)',
-                }}
-                circleProps={{
-                    className: 'ball'
-                }}
-            />
+            </Paper>
         </div>
     );
 }

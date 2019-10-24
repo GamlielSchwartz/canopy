@@ -1,67 +1,55 @@
-import React from 'react';
-import Tree from 'react-tree-graph'
+import React, { useState } from 'react';
 import './App.css';
 import BuildTree from './components/BuildTree';
+import AppBar from './components/AppBar';
+import Home from './components/Home';
+import Navigator from './components/Navigator';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import FriendTree from './components/FriendTree';
+import Profile from './components/Profile';
 
 function App() {
-    const data = {
-        "name": "Eve",
-        "children": [
-            {
-                "name": "Cain"
-            },
-            {
-                "name": "Seth",
-                "children": [
-                    {
-                        "name": "Enos",
-                        "gProps": {
-                            "className": 'red-node',
-                            "onClick": (event, node) =>
-                                alert(`Clicked ${node}!`)
-                        }
-                    },
-                    {
-                        "name": "Noam"
-                    },
-                    {
-                        "name": "Other guy"
-                    }
-                ]
-            },
-            {
-                "name": "Abel"
-            },
-            {
-                "name": "Awan",
-                "children": [
-                    {
-                        "name": "Enoch"
-                    }
-                ]
-            },
-            {
-                "name": "Azura"
-            }
-        ]
+    const [currentRoute, setCurrentRoute] = useState('/home');
+    const [clickedFriendTree, setClickedFriendTree] = useState({ "name": "empty tree (error)" });
+
+    const changeRoute = (route) => {
+        setCurrentRoute(route);
     };
+
+    const handleClickedFriendTree = (data) => {
+        console.log(data)
+        setClickedFriendTree(data);
+        setCurrentRoute('/friendTree')
+    }
 
     return (
 
         <div className="custom-container">
-            {/* <Tree
-                data={data}
-                height={800}
-                width={800}
-                svgProps={{
-                    transform: 'rotate(270)',
-                    className: 'custom'
-                }}
-                textProps={{
-                    transform: 'rotate(90)',
-                }}
-            /> */}
-            <BuildTree startingPosition="Cats are better than dogs" proOrCon='con-node'/>
+            <AppBar />
+            <Navigator changeRoute={changeRoute} />
+            <Router>
+                {/* For some reason history not being pushed so can't move forward/back w/ browser arrows */}
+                <Switch>
+                    <Route path="/home" render={
+                        () => <Home
+                            setClickedTree={handleClickedFriendTree}
+                        />}
+                    />
+                    <Route path="/buildTree" render={() =>
+                        <BuildTree
+                            startingPosition="Cats are better than dogs"
+                            proOrCon='pro-node'
+                        />}
+                    />
+                    <Route path="/friendTree" render={
+                        () => <FriendTree data={clickedFriendTree} />}
+                    />
+                                        <Route path="/profile" render={
+                        () => <Profile />}
+                    />
+                </Switch>
+                <Redirect to={currentRoute} />
+            </Router>
         </div>
     );
 }

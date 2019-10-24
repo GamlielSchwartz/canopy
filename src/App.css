@@ -1,5 +1,6 @@
 div.custom-container {
-	background-color: #242424;
+  /* background-color: #242424; */
+  height: 100%;
 }
 
 /* svg.custom .node circle {
@@ -12,12 +13,13 @@ svg.custom .node text {
 	font-size: 11px;
 	background-color: #444;
 	fill: #F4F4F4;
-	text-shadow: 0 1px 4px black;
+  text-shadow: 0 1px 4px black;
+  width: 100%;
+  height: 100%;
 }
 
 svg.custom .node {
   cursor: pointer;
-  color: pink;
 }
 
 svg.custom path.link {
@@ -37,4 +39,18 @@ svg.custom path.link {
 .ball {
   cursor: pointer;
   width: 100px;
+}
+
+text {
+  cursor: pointer;
+    /* uncomment to hide text, check if better option than hidden, can still click? */
+  display: none; 
+
+}
+
+svg.mini-tree {
+  border-style: solid;
+  fill: none;
+  stroke: black;
+  stroke-width: 1.5px;
 }
