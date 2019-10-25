@@ -4,42 +4,71 @@ import Tree from 'react-tree-graph'
 function MiniTree(props) {
     const data = {
         "name": "Eve",
+        "gProps": {
+            "className": 'pro-node',
+            "onClick": (event, node) =>
+                alert(`Clicked ${node}!`)
+        },
         "children": [
             {
-                "name": "Cain"
+                "name": "Cain",
+                "gProps": {
+                    "className": 'con-node',
+                }
             },
             {
                 "name": "Seth",
+                "gProps": {
+                    "className": 'con-node',
+                },
                 "children": [
                     {
                         "name": "Enos",
                         "gProps": {
-                            "className": 'red-node',
+                            "className": 'con-node',
                             "onClick": (event, node) =>
                                 alert(`Clicked ${node}!`)
                         }
                     },
                     {
-                        "name": "Noam"
+                        "name": "Noam",
+                        "gProps": {
+                            "className": 'pro-node',
+                        }
                     },
                     {
-                        "name": "Other guy"
+                        "name": "Other guy",
+                        "gProps": {
+                            "className": 'con-node',
+                        }
                     }
                 ]
             },
             {
-                "name": "Abel"
+                "name": "Abel",
+                "gProps": {
+                    "className": 'con-node',
+                }
             },
             {
                 "name": "Awan",
+                "gProps": {
+                    "className": 'pro-node',
+                },
                 "children": [
                     {
-                        "name": "Enoch"
+                        "name": "Enoch",
+                        "gProps": {
+                            "className": 'con-node',
+                        }
                     }
                 ]
             },
             {
-                "name": "Azura"
+                "name": "Azura",
+                "gProps": {
+                    "className": 'pro-node',
+                }
             }
         ]
     };
@@ -48,7 +77,7 @@ function MiniTree(props) {
         <div onClick={() => props.setClickedTree(data)}>
             <Tree
                 nodeRadius={8}
-                margins={{ top: 20, bottom: 10, left: 20, right: 200 }}
+                margins={{ top: 30, bottom: 30, left: 50, right: 50 }}
                 data={data}
                 height={300}
                 width={300}

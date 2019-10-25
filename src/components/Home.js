@@ -9,8 +9,8 @@ function Home(props) {
     }
     return (
 
-        <div className="custom-container">
-            <Paper style={{ maxHeight: window.innerHeight * .85, overflow: 'auto' }}>
+        <div>
+            <Paper style={{ maxHeight: window.innerHeight * 1, overflow: 'auto' }}>
                 <List component="nav" aria-label="main mailbox folders">
                     <ListItem>
                         <MiniTree setClickedTree={handleClickedTree}/>

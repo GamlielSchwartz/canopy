@@ -24,8 +24,8 @@ function App() {
 
     return (
 
-        <div className="custom-container">
-            <AppBar />
+        <div style={{ height: window.innerHeight, overflow: 'auto' }}>
+            {/* <AppBar /> */}
             <Navigator changeRoute={changeRoute} />
             <Router>
                 {/* For some reason history not being pushed so can't move forward/back w/ browser arrows */}
@@ -35,8 +35,8 @@ function App() {
                             setClickedTree={handleClickedFriendTree}
                         />}
                     />
-                    <Route path="/buildTree" render={() =>
-                        <BuildTree
+                    <Route path="/buildTree" render={
+                        () => <BuildTree
                             startingPosition="Cats are better than dogs"
                             proOrCon='pro-node'
                         />}
@@ -44,7 +44,7 @@ function App() {
                     <Route path="/friendTree" render={
                         () => <FriendTree data={clickedFriendTree} />}
                     />
-                                        <Route path="/profile" render={
+                    <Route path="/profile" render={
                         () => <Profile />}
                     />
                 </Switch>

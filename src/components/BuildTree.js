@@ -78,8 +78,8 @@ export default function BuildTree(props) {
     return (
 
 
-        <div className="custom-container">
-            <Paper style={{ maxHeight: window.innerHeight * .85, overflow: 'auto' }}>
+        <div>
+            <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
                 {showNewNodeForm ?
                     <NewNodeForm
                         setNewNodeFormOpen={setNewNodeFormOpen}
@@ -88,13 +88,14 @@ export default function BuildTree(props) {
                     />
                     : null}
                 <Tree
+                    margins={{ bottom : 50, left : 100, right : 100, top : 20}}
                     nodeRadius={15}
                     data={data}
-                    height={678}
-                    width={678}
+                    height={650}
+                    width={650}
                     svgProps={{
                         transform: 'rotate(270)',
-                        className: 'custom'
+                        className: 'custom',
                     }}
                     textProps={{
                         transform: 'rotate(90)',
@@ -102,7 +103,8 @@ export default function BuildTree(props) {
                     circleProps={{
                         className: 'ball'
                     }}
-                />
+                >
+                </Tree>
             </Paper>
         </div>
     );

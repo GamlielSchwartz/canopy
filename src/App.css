@@ -44,7 +44,7 @@ svg.custom path.link {
 text {
   cursor: pointer;
     /* uncomment to hide text, check if better option than hidden, can still click? */
-  display: none; 
+  /* display: none;  */
 
 }
 
