@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-export default function NewNodeForm(props) {
+export default function SuggestionForm(props) {
     const [currText, updateText] = useState("");
     const [tabValue, setTabValue] = React.useState(0);
 
@@ -19,12 +19,12 @@ export default function NewNodeForm(props) {
     };
 
     const handleClose = () => {
-        props.setNewNodeFormOpen(false);
+        props.setSuggestionForm(false);
     };
 
     const handleSubmit = () => {
         handleClose();
-        props.addNode(props.clickedNode, currText, tabValue);
+        props.sendSuggestion(currText, props.clickedNode, tabValue);
     }
 
     const handleChangeText = (event) => {
@@ -34,7 +34,7 @@ export default function NewNodeForm(props) {
     return (
         <div>
             <Dialog open={true} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add New Argument</DialogTitle>
+                <DialogTitle id="form-dialog-title">Suggestion</DialogTitle>
                 <DialogContent>
                     <Paper square>
                         <Tabs
@@ -56,7 +56,7 @@ export default function NewNodeForm(props) {
                         autoFocus
                         margin="dense"
                         id="newArgument"
-                        label="Type new argument here..."
+                        label="Type suggested argument here..."
                         type="text"
                         text={currText}
                         fullWidth

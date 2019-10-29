@@ -15,7 +15,7 @@ function Navigator(props) {
 
         <Paper square>
             <Tabs
-                // style={{ height: '100px' }}
+                style={{ backgroundColor: '#40ae9a' }}
                 value={value}
                 indicatorColor="primary"
                 textColor="primary"

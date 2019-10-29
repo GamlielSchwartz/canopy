@@ -7,6 +7,7 @@ function Home(props) {
     const handleClickedTree = (data) => {
         props.setClickedTree(data);
     }
+    
     return (
 
         <div>
@@ -16,7 +17,7 @@ function Home(props) {
                         <MiniTree setClickedTree={handleClickedTree}/>
                     </ListItem>
                     <ListItem>
-                        <MiniTree setClickedTree={handleClickedTree}/>
+                        <MiniTree setClickedTree={handleClickedTree} isStumped={true}/>
                     </ListItem>
                     <ListItem>
                         <MiniTree setClickedTree={handleClickedTree}/>

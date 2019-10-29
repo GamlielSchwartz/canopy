@@ -48,8 +48,11 @@ text {
 
 }
 
+img {
+  cursor: pointer;
+}
+
 svg.mini-tree {
-  border-style: solid;
   fill: none;
   stroke: black;
   stroke-width: 1.5px;
