@@ -30,16 +30,17 @@ function App() {
 
     const [numNotifications, setNumNotification] = useState(0);
     const [suggestionData, setSuggestionData] = useState({});
-    
+
     function addNotification(data) {
         console.log(data);
         setSuggestionData(data);
         setNumNotification(numNotifications + 1);
     }
 
-    function acceptSuggestion(data){
+    function acceptSuggestion(data) {
         console.log(data);
     }
+
 
     return (
 
@@ -66,8 +67,6 @@ function App() {
                     />
                     <Route path="/buildTree" render={
                         () => <BuildTree
-                            startingPosition="Cats are better than dogs"
-                            proOrCon='pro-node'
                             shouldShowAlerts={shouldShowAlerts}
                             showAlerts={showAlerts}
                         />}
