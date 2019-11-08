@@ -6,30 +6,31 @@ function ProCon(props) {
     function addToTree(side) {
         props.addToTree(side);
     }
+
     return (
         <Grid
             container
             direction="column"
-            justify="flex-start"
+            justify="center"
             alignItems="center"
-        >
+            >
             <Grid item>
                 {props.parentNode}
-                </Grid>
+            </Grid>
             <Grid
                 container
                 direction="row"
                 justify="flex-start"
-                alignItems="center"
-            >
-                <Grid item>
+                alignItems="flex-start"
+                >
+                <Grid item xs={6}>
                     <ArgumentList
                         listItems={props.pros}
                         side="Pro"
                         addToTree={addToTree}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item xs={6}>
                     <ArgumentList
                         listItems={props.cons}
                         side="Con"

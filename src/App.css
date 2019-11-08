@@ -48,6 +48,10 @@ text {
 
 }
 
+.hide-me {
+  display: none;
+}
+
 img {
   cursor: pointer;
 }

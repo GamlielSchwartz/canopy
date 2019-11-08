@@ -11,10 +11,11 @@ import getNode from '../utils/getChildren';
 
 export default function BuildTree(props) {
     const [showNewNodeForm, setNewNodeFormOpen] = useState(false);
-    const [clickedNode, setClickedNode] = useState(props.startingPosition)
+    // const [clickedNode, setClickedNode] = useState(props.startingPosition)
     const [clickedProChildren, setClickedProChildren] = useState([]);
     const [clickedConChildren, setClickedConChildren] = useState([]);
     const [data, setData] = useState(null);
+    const [newNodeFormSide, setNewNodeFormSide] = useState('Pro');
 
     const [toggleNode, setToggleNode] = useState(null);
 
@@ -36,12 +37,13 @@ export default function BuildTree(props) {
     }, [data, toggleNode]);
 
     function addToTree(side) {
+        setNewNodeFormSide(side);
         setNewNodeFormOpen(true);
     }
 
     function onNodeClick(shouldOpenForm, node) {
         // setNewNodeFormOpen(shouldOpenForm);
-        setClickedNode(node);
+        // setClickedNode(node);
         setToggleNode(node);
         // console.log("data on click2:");
         // console.log(data);
@@ -117,6 +119,7 @@ export default function BuildTree(props) {
             }
         };
         setData(newData);
+        setToggleNode(argument);
     }
 
     function makeNodesClickable(propsData) {
@@ -147,10 +150,10 @@ export default function BuildTree(props) {
         )
     } else return (
         <Grid
-            container
-            direction="column"
-            justify="space-evenly"
-            alignItems="stretch"
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="flex-start"
         >
             {showSnackBar ?
                 <SnackPopup
@@ -158,59 +161,35 @@ export default function BuildTree(props) {
                     message="Stumped: People may now suggest arguments for your tree!"
                 />
                 : null}
-            <Grid
+            {/* <Grid
                 container
                 direction="column"
                 justify="space-evenly"
                 alignItems="flex-end"
             >
-
-                <Grid
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="flex-end"
-                >
-                    <Grid
-                        container
-                        direction="column"
-                        justify="flex-end"
-                        alignItems="flex-end"
-                    >
-
-                        {/* <Grid item>
-                            Stumped?
-                        </Grid> */}
-                        <Grid item onClick={() => console.log(data)}>
-                            {isStumped ?
-                                <Grid item>
-                                    Awaiting Suggestions...
-                                                    </Grid>
-                                :
-                                <img
-                                    onClick={handleStumped}
-                                    src={require('../stump.png')}
-                                    alt="alt"
-                                    style={{ width: 100, height: 50 }}
-                                />
-                            }
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="flex-start"
-            >
                 <Grid item>
+                    {isStumped ?
+                        <Grid item>
+                            Awaiting Suggestions...
+                                </Grid>
+                        :
+                        <img
+                            onClick={handleStumped}
+                            src={require('../stump.png')}
+                            alt="alt"
+                            style={{ width: 100, height: 50 }}
+                        />
+                    }
+                </Grid>
+            </Grid> */}
+                <Grid item xs={6}>
                     <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
                         {showNewNodeForm ?
                             <NewNodeForm
+                                side={newNodeFormSide}
                                 setNewNodeFormOpen={setNewNodeFormOpen}
                                 addNode={addNode2}
-                                clickedNode={clickedNode}
+                                clickedNode={toggleNode}
                             />
                             : null}
                         <Tree
@@ -225,6 +204,7 @@ export default function BuildTree(props) {
                             }}
                             textProps={{
                                 transform: 'rotate(90)',
+                                className: 'hide-me'
                             }}
                             circleProps={{
                                 className: 'ball'
@@ -233,7 +213,7 @@ export default function BuildTree(props) {
                         </Tree>
                     </Paper>
                 </Grid>
-                <Grid item>
+                <Grid item xs={6}>
                     <ProCon
                         parentNode={toggleNode}
                         addToTree={addToTree}
@@ -241,8 +221,6 @@ export default function BuildTree(props) {
                         cons={clickedConChildren}
                     />
                 </Grid>
-            </Grid>
-
         </Grid>
 
 
