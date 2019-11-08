@@ -28,7 +28,7 @@ export default function ArgumentList(props) {
                 alignItems="center"
             >
                 <List component="nav" aria-label="secondary mailbox folders">
-                <Grid item xs={6}>
+                <Grid item >
 
                     <ListItem>
                         <ListItemText primary={props.side} />
@@ -40,13 +40,13 @@ export default function ArgumentList(props) {
                         return (
                             <div key={index}>
                                 <ListItem button>
-                                <Grid item xs={6}>
+                                <Grid item >
 
                                     <ListItemText
                                         disableTypography
                                         primary={<Typography type="body2" style={{ color: 'black' }}>{item.name}</Typography>}
                                     />
-                                                    </Grid>
+                                 </Grid>
 
                                 </ListItem>
                                 <Divider />

@@ -12,7 +12,7 @@ div.custom-container {
 svg.custom .node text {
 	font-size: 11px;
 	background-color: #444;
-	fill: #F4F4F4;
+	/* fill: #F4F4F4; */
   text-shadow: 0 1px 4px black;
   width: 100%;
   height: 100%;
@@ -30,10 +30,14 @@ svg.custom path.link {
 
 .con-node {
   fill: red;
+  stroke: red;
+	stroke-width: 2px;
 }
 
 .pro-node {
   fill: green;
+  stroke: green;
+	stroke-width: 2px;
 }
 
 .ball {

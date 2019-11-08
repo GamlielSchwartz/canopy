@@ -18,7 +18,15 @@ export default function BuildTree(props) {
     const [newNodeFormSide, setNewNodeFormSide] = useState('Pro');
 
     const [toggleNode, setToggleNode] = useState(null);
+    var classname = document.getElementsByClassName("myNode");
 
+    var myFunction = function () {
+        console.log('!!!')
+    };
+
+    for (var i = 0; i < classname.length; i++) {
+        classname[i].addEventListener('hover', myFunction, false);
+    }
     useEffect(() => {
         if (!toggleNode) return;
         var clickedNode = getNode(toggleNode, data, this);
@@ -115,7 +123,8 @@ export default function BuildTree(props) {
                 "className": 'pro-node',
                 "onClick": (event, node) => {
                     onNodeClick(true, node);
-                }
+                },
+                "onMouseOver": (e, node) => console.log(node)
             }
         };
         setData(newData);
@@ -131,7 +140,8 @@ export default function BuildTree(props) {
             (event, node) => {
                 onNodeClick(true, node);
             }
-
+        propsData.gProps.onMouseOver =
+            (event, node) => console.log(node)
         const children = propsData.children;
         if (!children) return;
         for (var i = 0; i < children.length; i++) {
@@ -150,10 +160,10 @@ export default function BuildTree(props) {
         )
     } else return (
         <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="flex-start"
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="flex-start"
         >
             {showSnackBar ?
                 <SnackPopup
@@ -182,45 +192,57 @@ export default function BuildTree(props) {
                     }
                 </Grid>
             </Grid> */}
-                <Grid item xs={6}>
-                    <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
-                        {showNewNodeForm ?
-                            <NewNodeForm
-                                side={newNodeFormSide}
-                                setNewNodeFormOpen={setNewNodeFormOpen}
-                                addNode={addNode2}
-                                clickedNode={toggleNode}
-                            />
-                            : null}
-                        <Tree
-                            margins={{ bottom: 50, left: 100, right: 100, top: 20 }}
-                            nodeRadius={15}
-                            data={data}
-                            height={620}
-                            width={620}
-                            svgProps={{
-                                transform: 'rotate(270)',
-                                className: 'custom',
-                            }}
-                            textProps={{
-                                transform: 'rotate(90)',
-                                className: 'hide-me'
-                            }}
-                            circleProps={{
-                                className: 'ball'
-                            }}
-                        >
-                        </Tree>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <ProCon
-                        parentNode={toggleNode}
-                        addToTree={addToTree}
-                        pros={clickedProChildren}
-                        cons={clickedConChildren}
-                    />
-                </Grid>
+            <Grid item xs={6}>
+                <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
+                    {showNewNodeForm ?
+                        <NewNodeForm
+                            side={newNodeFormSide}
+                            setNewNodeFormOpen={setNewNodeFormOpen}
+                            addNode={addNode2}
+                            clickedNode={toggleNode}
+                        />
+                        : null}
+                    <Tree
+                        margins={{ bottom: 50, left: 100, right: 100, top: 20 }}
+                        nodeRadius={15}
+                        data={data}
+                        height={620}
+                        width={620}
+                        svgProps={{
+                            transform: 'rotate(270)',
+                            className: 'custom'
+                        }}
+                        textProps={{
+                            transform: 'rotate(90)',
+                            className: 'hide-me'
+                        }}
+                        circleProps={{
+                            className: 'ball',
+                            transform: 'rotate(270)',
+                            fill: "url(#image1)",
+                        }}
+                    >
+
+
+                        <defs>
+                            <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">
+                                <image height=".7" weight="1" preserveAspectRatio="none" href='https://cdn.pixabay.com/photo/2014/04/02/11/11/leaf-305495_960_720.png'>
+                                </image>
+                            </pattern>
+                        </defs>
+                    </Tree>
+                </Paper>
+            </Grid>
+            <Grid item xs={6}>
+            <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
+                <ProCon
+                    parentNode={toggleNode}
+                    addToTree={addToTree}
+                    pros={clickedProChildren}
+                    cons={clickedConChildren}
+                />
+                </Paper>
+            </Grid>
         </Grid>
 
 
