@@ -18,55 +18,86 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function ArgumentList(props) {
-    const classes = useStyles();
 
     return (
+        // <Grid
+        // xs={12}
+        //     container
+        //     direction="column"
+        //     justify="center"
+        //     alignItems="center"
+        // >
+        <List component="nav" aria-label="secondary mailbox folders">
+
             <Grid
                 container
                 direction="column"
                 justify="center"
                 alignItems="center"
             >
-                <List component="nav" aria-label="secondary mailbox folders">
-                <Grid item >
-
+                <Grid>
                     <ListItem>
                         <ListItemText primary={props.side} />
                     </ListItem>
-                    </Grid>
+                </Grid>
+            </Grid>
 
-                    <Divider />
-                    {props.listItems.map((item, index) => {
-                        return (
-                            <div key={index}>
-                                <ListItem button>
-                                <Grid item >
-
+            <Divider />
+            {props.listItems.map((item, index) => {
+                return (
+                    <div key={index}>
+                        <ListItem button onClick={()=> props.onNodeClick(item.name)}>
+                            <Grid item xs={12}>
+                                <Grid
+                                    container
+                                    direction="column"
+                                    justify="center"
+                                    alignItems="center"
+                                >
                                     <ListItemText
                                         disableTypography
-                                        primary={<Typography type="body2" style={{ color: 'black' }}>{item.name}</Typography>}
+                                        primary={
+                                            <Typography
+                                                type="body2"
+                                                style={{ color: 'black' }}
+                                            >
+                                                {item.name}
+                                            </Typography>
+                                        }
                                     />
-                                 </Grid>
-
-                                </ListItem>
-                                <Divider />
-                            </div>
-                        )
-                    })}
-                    <ListItem button onClick={() => props.addToTree(props.side)}>
-                    <Grid item xs={6}>
+                                </Grid>
+                            </Grid>
+                        </ListItem>
+                        <Divider />
+                    </div>
+                )
+            })}
+            <ListItem button onClick={() => props.addToTree(props.side)}>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <Grid item >
 
                         <ListItemIcon>
-
-                            <AddCircleIcon
-                                htmlColor={props.side === 'Con' ? 'red' : 'green'}
-                            />
+                            <Grid
+                                container
+                                direction="column"
+                                justify="center"
+                                alignItems="center"
+                            >
+                                <AddCircleIcon
+                                    htmlColor={props.side === 'Con' ? 'red' : 'green'}
+                                />
+                            </Grid>
 
                         </ListItemIcon>
-                        </Grid>
+                    </Grid>
+                </Grid>
 
-                    </ListItem>
-                </List>
-            </Grid>
+            </ListItem>
+        </List>
     );
 }

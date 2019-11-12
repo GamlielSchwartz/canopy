@@ -24,7 +24,8 @@ svg.custom .node {
 
 svg.custom path.link {
 	fill: none;
-	stroke: #2593B8;
+  /* stroke: #2593B8; */
+  stroke: #8B0000;
 	stroke-width: 1.5px;
 }
 

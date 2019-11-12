@@ -8,6 +8,14 @@ import SnackPopup from './SnackPopup';
 import SeedPopup from './SeedPopup';
 import ProCon from './ProCon';
 import getNode from '../utils/getChildren';
+import { makeStyles } from '@material-ui/core/styles';
+import removeNode from '../utils/removeNode';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: theme.spacing(3, 2),
+    },
+}));
 
 export default function BuildTree(props) {
     const [showNewNodeForm, setNewNodeFormOpen] = useState(false);
@@ -16,23 +24,29 @@ export default function BuildTree(props) {
     const [clickedConChildren, setClickedConChildren] = useState([]);
     const [data, setData] = useState(null);
     const [newNodeFormSide, setNewNodeFormSide] = useState('Pro');
-
+    const classes = useStyles();
     const [toggleNode, setToggleNode] = useState(null);
-    var classname = document.getElementsByClassName("myNode");
+    const [deletingNode, setDeletingNode] = useState(false);
 
-    var myFunction = function () {
-        console.log('!!!')
-    };
 
-    for (var i = 0; i < classname.length; i++) {
-        classname[i].addEventListener('hover', myFunction, false);
-    }
     useEffect(() => {
+        // console.log("data from useEffect: ")
+        // console.log(data)
+        // console.log(deletingNode ? "deleting node on" : "deleting node not on")
+        if (deletingNode){
+            setClickedProChildren([]);
+            setClickedConChildren([]);
+            setToggleNode(data.name);//reset procon list to root argument
+            setDeletingNode(false);
+            return;
+        }
         if (!toggleNode) return;
+        // console.log(toggleNode);
         var clickedNode = getNode(toggleNode, data, this);
+        // console.log(clickedNode);
         if (!clickedNode.children) {
             setClickedProChildren([]);
-            setClickedConChildren([])
+            setClickedConChildren([]);
             return;
 
         }
@@ -40,16 +54,16 @@ export default function BuildTree(props) {
         var conChildren = clickedNode.children.filter(child => child.gProps.className === 'con-node');
         setClickedProChildren(proChildren);
         setClickedConChildren(conChildren)
-        console.log(proChildren);
-        console.log(conChildren);
-    }, [data, toggleNode]);
+        // console.log(proChildren);
+        // console.log(conChildren);
+    }, [data, toggleNode, deletingNode]);
 
     function addToTree(side) {
         setNewNodeFormSide(side);
         setNewNodeFormOpen(true);
     }
 
-    function onNodeClick(shouldOpenForm, node) {
+    function onNodeClick(node) {
         // setNewNodeFormOpen(shouldOpenForm);
         // setClickedNode(node);
         setToggleNode(node);
@@ -84,7 +98,7 @@ export default function BuildTree(props) {
             (event, node) => {
                 console.log("data on click1:");
                 console.log(data);
-                onNodeClick(true, node);
+                onNodeClick(node);
             }
         );
         // console.log(newTree);
@@ -103,6 +117,7 @@ export default function BuildTree(props) {
 
     const [isStumped, setIsStumped] = useState(false);
     const [showSnackBar, setShowSnackBar] = useState(false);
+    const [nodeUnderMouse, setNodeUnderMouse] = useState('Hover over a leaf to display argument...');
 
     function closeSnackbar() {
         setShowSnackBar(false);
@@ -113,7 +128,9 @@ export default function BuildTree(props) {
         setIsStumped(true);
     }
 
-    function closeSeedPopup() {
+    function displayMouseOver(node) {
+        console.log(node)
+        setNodeUnderMouse(node);
     }
 
     function setSeedArgument(argument) {
@@ -122,13 +139,23 @@ export default function BuildTree(props) {
             "gProps": {
                 "className": 'pro-node',
                 "onClick": (event, node) => {
-                    onNodeClick(true, node);
+                    onNodeClick(node);
                 },
-                "onMouseOver": (e, node) => console.log(node)
+                "onMouseOver": (e, node) => displayMouseOver(node),
+                "onMouseOut": () => displayMouseOver('Hover over a leaf to display argument...')
             }
         };
         setData(newData);
         setToggleNode(argument);
+    }
+
+    async function deleteNode(match){
+        if (match === data.name) return;//can't delete root
+        var newTree = removeNode(match, data);
+        console.log("after deletion: ")
+        console.log(newTree);
+        setData(makeNodesClickable(newTree));
+        setDeletingNode(true);
     }
 
     function makeNodesClickable(propsData) {
@@ -138,10 +165,11 @@ export default function BuildTree(props) {
         //and gProps should exist because classnames which dictate node color should be present in mini tree
         propsData.gProps.onClick =
             (event, node) => {
-                onNodeClick(true, node);
+                onNodeClick(node);
             }
         propsData.gProps.onMouseOver =
-            (event, node) => console.log(node)
+            (event, node) => displayMouseOver(node)
+        propsData.gProps.onMouseOut = () => displayMouseOver('Hover over a leaf to display argument...')
         const children = propsData.children;
         if (!children) return;
         for (var i = 0; i < children.length; i++) {
@@ -155,7 +183,7 @@ export default function BuildTree(props) {
         return (
             <SeedPopup
                 setSeedArgument={setSeedArgument}
-                close={closeSeedPopup}
+                close={()=> 'trying to close seed popup'}
             />
         )
     } else return (
@@ -192,7 +220,18 @@ export default function BuildTree(props) {
                     }
                 </Grid>
             </Grid> */}
+            
             <Grid item xs={6}>
+            <Paper className={classes.root}>
+                        <Grid
+                            container
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
+                        >
+                            {nodeUnderMouse}
+                        </Grid>
+                    </Paper>
                 <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
                     {showNewNodeForm ?
                         <NewNodeForm
@@ -234,13 +273,15 @@ export default function BuildTree(props) {
                 </Paper>
             </Grid>
             <Grid item xs={6}>
-            <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
-                <ProCon
-                    parentNode={toggleNode}
-                    addToTree={addToTree}
-                    pros={clickedProChildren}
-                    cons={clickedConChildren}
-                />
+                <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
+                    <ProCon
+                        deleteNode={deleteNode}
+                        onNodeClick={onNodeClick}
+                        parentNode={toggleNode}
+                        addToTree={addToTree}
+                        pros={clickedProChildren}
+                        cons={clickedConChildren}
+                    />
                 </Paper>
             </Grid>
         </Grid>
