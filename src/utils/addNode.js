@@ -49,8 +49,8 @@ export default function addNode(parent, childText, tabValue, arrayWithRoot, star
     // console.log(parent);
     // console.log("arrayWithRoot");
     // console.log(arrayWithRoot);
-    console.log("startingTree")
-    console.log(startingTree)
+    // console.log("startingTree")
+    // console.log(startingTree)
     // console.log("func");
     // console.log(func);
     // const treeCopy = Object.assign({}, startingTree);

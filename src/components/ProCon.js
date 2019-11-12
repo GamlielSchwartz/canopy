@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper, Button } from '@material-ui/core';
+import { Grid, Paper, Button, TextField } from '@material-ui/core';
 import ArgumentList from './ArgumentList';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -11,13 +11,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ProCon(props) {
+    const [toEdit, setToEdit] = React.useState('');
+
+    // React.useEffect(() => {
+    //     //change value of toEdit field for textField when props change
+    //     if (props.parentNode && props.parentNode !== toEdit){
+    //         setToEdit('');
+    //     }
+    // }, [toEdit, props.parentNode]);
     function addToTree(side) {
         props.addToTree(side);
     }
     const classes = useStyles();
 
-
-
+    function handleInputChange(newVal) {
+        setToEdit(newVal);
+    }
     return (
 
         <Grid
@@ -27,13 +36,23 @@ function ProCon(props) {
             alignItems="center"
         >
             <Paper className={classes.root}>
-
                 <Grid item xs={12}>
                     {props.parentNode}
-                    <Button 
-                    color="primary"
-                    onClick={()=> props.deleteNode(props.parentNode)}
+                    <Button
+                        color="primary"
+                        onClick={() => props.deleteNode(props.parentNode)}
                     >Delete Node (and children)</Button>
+                    <TextField
+                        placeholder="type new Node here"
+                        // onMouseDown={()=> setToEdit(props.parentNode)}
+                        onChange={(event) => handleInputChange(event.target.value)}
+                        value={toEdit}
+                    />
+                    <Button
+                        color="primary"
+                        onClick={() => props.editNode(props.parentNode, toEdit)}
+                    >Edit
+                    </Button>
                 </Grid>
             </Paper>
 

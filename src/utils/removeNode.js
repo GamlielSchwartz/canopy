@@ -19,20 +19,20 @@ function recursiveGetNode(match, startingTree) {
 }
 
 function recursiveHelper(match, startingTree, parent){
-    console.log("starting tree: ");
-    console.log(startingTree);
-    console.log("parent")
-    console.log(parent);
-    console.log("name: " + startingTree['name'] + ', match: ' + match)
+    // console.log("starting tree: ");
+    // console.log(startingTree);
+    // console.log("parent")
+    // console.log(parent);
+    // console.log("name: " + startingTree['name'] + ', match: ' + match)
     if (startingTree['name'] === match) { //we are on node we want to delete
         parent.children = parent.children.filter(item => item.name !== startingTree.name);
-        console.log(parent.children);
+        // console.log(parent.children);
     } else {
-        console.log("in else, startingTree.children: ");
-        console.log(startingTree.children);
+        // console.log("in else, startingTree.children: ");
+        // console.log(startingTree.children);
         if (!startingTree.children) return;
         for (var i = 0; i < startingTree.children.length; i++){
-            console.log("child: " + startingTree.children[i])
+            // console.log("child: " + startingTree.children[i])
             recursiveHelper(match, startingTree.children[i], startingTree);
         }
     }

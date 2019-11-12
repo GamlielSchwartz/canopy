@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-tree-graph'
 import { Paper, Grid } from '@material-ui/core';
-
 import NewNodeForm from './NewNodeForm';
 import addNode from '../utils/addNode';
 import SnackPopup from './SnackPopup';
@@ -10,6 +9,7 @@ import ProCon from './ProCon';
 import getNode from '../utils/getChildren';
 import { makeStyles } from '@material-ui/core/styles';
 import removeNode from '../utils/removeNode';
+import editNode2 from '../utils/editNode';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,6 +27,7 @@ export default function BuildTree(props) {
     const classes = useStyles();
     const [toggleNode, setToggleNode] = useState(null);
     const [deletingNode, setDeletingNode] = useState(false);
+    const [editingNode, setEditingNode] = useState(false);
 
 
     useEffect(() => {
@@ -38,6 +39,11 @@ export default function BuildTree(props) {
             setClickedConChildren([]);
             setToggleNode(data.name);//reset procon list to root argument
             setDeletingNode(false);
+            return;
+        }
+        if (editingNode){
+            // setToggleNode(data.name);
+            setEditingNode(false);
             return;
         }
         if (!toggleNode) return;
@@ -56,7 +62,7 @@ export default function BuildTree(props) {
         setClickedConChildren(conChildren)
         // console.log(proChildren);
         // console.log(conChildren);
-    }, [data, toggleNode, deletingNode]);
+    }, [data, toggleNode, deletingNode, editingNode]);
 
     function addToTree(side) {
         setNewNodeFormSide(side);
@@ -129,7 +135,7 @@ export default function BuildTree(props) {
     }
 
     function displayMouseOver(node) {
-        console.log(node)
+        // console.log(node)
         setNodeUnderMouse(node);
     }
 
@@ -149,11 +155,20 @@ export default function BuildTree(props) {
         setToggleNode(argument);
     }
 
+    function editNode(oldNode, newNode){
+        var newD = editNode2(oldNode, data, newNode);
+        setData(makeNodesClickable(newD));
+        setEditingNode(true);
+        setToggleNode(newNode);
+
+        console.log(newD);
+    }
+
     async function deleteNode(match){
         if (match === data.name) return;//can't delete root
         var newTree = removeNode(match, data);
-        console.log("after deletion: ")
-        console.log(newTree);
+        // console.log("after deletion: ")
+        // console.log(newTree);
         setData(makeNodesClickable(newTree));
         setDeletingNode(true);
     }
@@ -275,6 +290,7 @@ export default function BuildTree(props) {
             <Grid item xs={6}>
                 <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
                     <ProCon
+                        editNode={editNode}
                         deleteNode={deleteNode}
                         onNodeClick={onNodeClick}
                         parentNode={toggleNode}
