@@ -14,13 +14,18 @@ function recursiveHelper(match, startingTree, newText){
     } else {
         if (!startingTree.children) return;
         for (var i = 0; i < startingTree.children.length; i++){
-            recursiveHelper(match, startingTree.children[i], startingTree);
+            recursiveHelper(match, startingTree.children[i], newText);
         }
     }
 }
 
 export default function editNode(match, startingTree, newText) {
+    console.log('newText: ' + newText);
     const treeCopy = JSON.parse(JSON.stringify(startingTree));
+    if (startingTree.name === match){
+        treeCopy.name = newText;
+        return treeCopy;
+    }
     var newT = recursiveGetNode(match, treeCopy, newText);
     return newT;
 }
