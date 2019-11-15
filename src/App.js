@@ -52,10 +52,10 @@ function App() {
                     suggestionData={suggestionData}
                 />
                 : null}
-            <AppBar
+            {/* <AppBar
                 numNotifications={numNotifications}
                 showAlerts={showAlerts}
-            />
+            /> */}
             <Navigator changeRoute={changeRoute} />
             <Router>
                 {/* For some reason history not being pushed so can't move forward/back w/ browser arrows */}
