@@ -6,7 +6,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, TextField, Button } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import ClearIcon from '@material-ui/icons/Clear';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,7 +22,63 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function ArgumentList(props) {
+    const [showAddOn, setShowAddOn] = React.useState(false);
+    const [toEdit, setToEdit] = React.useState('');
 
+    function showAddOnListItem(shouldShow){
+        setShowAddOn(shouldShow)
+    }
+
+    function handleInputChange(newVal){
+        setToEdit(newVal);
+    }
+
+    function handleSaveNewItem(){
+        var child = toEdit;
+        console.log(props.side)
+        var tabVal = props.side === 'Pro' ? 0 : 1;
+        props.addToTree(child, tabVal);
+        console.log(toEdit);
+        setToEdit('');
+        setShowAddOn(false);
+    }
+
+    function editableListItem() {
+        return (
+            <div>
+                <ListItem>
+                    <Grid item xs={12}>
+                        <Grid
+                            container
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
+                        >
+                            <span>
+                            <TextField
+                                placeholder="Edit node..."
+                                onChange={(event) => handleInputChange(event.target.value)}
+                            />
+                            <Button
+                                color="primary"
+                                onClick={(() => showAddOnListItem(false))}
+                            >
+                                <ClearIcon />
+                            </Button>
+                            <Button
+                                color="primary"
+                                onClick={() => handleSaveNewItem()}
+                            >
+                                <SaveAltIcon />
+                            </Button>
+                        </span>
+                        </Grid>
+                    </Grid>
+                </ListItem>
+                <Divider />
+            </div>
+        )
+    }
     return (
         // <Grid
         // xs={12}
@@ -46,7 +106,7 @@ export default function ArgumentList(props) {
             {props.listItems.map((item, index) => {
                 return (
                     <div key={index}>
-                        <ListItem button onClick={()=> props.onNodeClick(item.name)}>
+                        <ListItem button onClick={() => props.onNodeClick(item.name)}>
                             <Grid item xs={12}>
                                 <Grid
                                     container
@@ -72,7 +132,10 @@ export default function ArgumentList(props) {
                     </div>
                 )
             })}
-            <ListItem button onClick={() => props.addToTree(props.side)}>
+            {showAddOn ? editableListItem() : null}
+            {/* <ListItem button onClick={() => props.addToTree(props.side)}> */}
+
+            <ListItem button onClick={() => showAddOnListItem(true)}>
                 <Grid
                     container
                     direction="column"

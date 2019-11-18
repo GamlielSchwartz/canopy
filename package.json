@@ -1,4 +1,5 @@
 {
+  "homepage": "http://web.stanford.edu/~garys1/cgi-bin/canopy",
   "name": "canopy-app",
   "version": "0.1.0",
   "private": true,

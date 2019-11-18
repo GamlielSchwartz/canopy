@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-tree-graph'
 import { Paper, Grid } from '@material-ui/core';
-import NewNodeForm from './NewNodeForm';
+// import NewNodeForm from './NewNodeForm';
 import addNode from '../utils/addNode';
 import SnackPopup from './SnackPopup';
 import SeedPopup from './SeedPopup';
@@ -20,12 +20,12 @@ const useStyles = makeStyles(theme => ({
 export default function BuildTree(props) {
     console.log("window width")
     console.log(window.innerWidth)
-    const [showNewNodeForm, setNewNodeFormOpen] = useState(false);
+    // const [showNewNodeForm, setNewNodeFormOpen] = useState(false);
     // const [clickedNode, setClickedNode] = useState(props.startingPosition)
     const [clickedProChildren, setClickedProChildren] = useState([]);
     const [clickedConChildren, setClickedConChildren] = useState([]);
     const [data, setData] = useState(null);
-    const [newNodeFormSide, setNewNodeFormSide] = useState('Pro');
+    // const [newNodeFormSide, setNewNodeFormSide] = useState('Pro');
     const classes = useStyles();
     const [toggleNode, setToggleNode] = useState(null);
     const [deletingNode, setDeletingNode] = useState(false);
@@ -86,9 +86,10 @@ useEffect(() => {
     // console.log(conChildren);
 }, [data, toggleNode, deletingNode, editingNode]);
 
-function addToTree(side) {
-    setNewNodeFormSide(side);
-    setNewNodeFormOpen(true);
+function addToTree(parent, newChild, tabValue) {
+    addNode2(parent, newChild, tabValue)
+    // setNewNodeFormSide(side);
+    // setNewNodeFormOpen(true);
 }
 
 function onNodeClick(node) {
@@ -145,7 +146,7 @@ async function addNode2(parent, childText, tabValue) {
     // addWithPathToNode(pathToNode, newData, childText, tabValue);
 }
 
-const [isStumped, setIsStumped] = useState(false);
+// const [isStumped, setIsStumped] = useState(false);
 const [showSnackBar, setShowSnackBar] = useState(false);
 const [nodeUnderMouse, setNodeUnderMouse] = useState('Hover over a leaf to display argument...');
 
@@ -153,10 +154,10 @@ function closeSnackbar() {
     setShowSnackBar(false);
 }
 
-function handleStumped() {
-    setShowSnackBar(true);
-    setIsStumped(true);
-}
+// function handleStumped() {
+//     setShowSnackBar(true);
+//     setIsStumped(true);
+// }
 
 function displayMouseOver(node) {
     // console.log(node)
@@ -180,6 +181,19 @@ function setSeedArgument(argument) {
 }
 
 function editNode(oldNode, newNode) {
+    console.log(data);
+    if (oldNode === data.name){
+        //something breaking here for some reason...
+        // var dataAsString = JSON.stringify(data);
+        // console.log(dataAsString)
+        // var copyData = JSON.parse(dataAsString);
+        // copyData.name = newNode;
+        // console.log('!!!');
+        // console.log(copyData);
+        // setData(makeNodesClickable(copyData));
+        // setEditingNode(true);
+        return;
+    }
     var newD = editNode2(oldNode, data, newNode);
     setData(makeNodesClickable(newD));
     setEditingNode(true);
@@ -272,14 +286,14 @@ if (!data) {
                 </Grid>
             </Paper>
             <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
-                {showNewNodeForm ?
+                {/* {showNewNodeForm ?
                     <NewNodeForm
                         side={newNodeFormSide}
                         setNewNodeFormOpen={setNewNodeFormOpen}
                         addNode={addNode2}
                         clickedNode={toggleNode}
                     />
-                    : null}
+                    : null} */}
                 <Tree
                     margins={{ bottom: 50, left: 100, right: 100, top: 20 }}
                     nodeRadius={15}
@@ -314,6 +328,7 @@ if (!data) {
         <Grid item xs={6}>
             <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
                 <ProCon
+                    isRoot={toggleNode === data.name}
                     editNode={editNode}
                     deleteNode={deleteNode}
                     onNodeClick={onNodeClick}
