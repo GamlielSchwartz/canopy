@@ -15,7 +15,6 @@ function recursiveGetNode(match, startingTree, self) {
 }
 
 export default function getNode(match,startingTree, self) {
-    // const treeCopy = Object.assign({}, startingTree);
     const treeCopy = JSON.parse(JSON.stringify(startingTree));
     return recursiveGetNode(match, treeCopy, self);
 }

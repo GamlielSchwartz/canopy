@@ -12,13 +12,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-}));
 
 
 export default function ArgumentList(props) {
@@ -35,10 +28,8 @@ export default function ArgumentList(props) {
 
     function handleSaveNewItem(){
         var child = toEdit;
-        console.log(props.side)
-        var tabVal = props.side === 'Pro' ? 0 : 1;
+        var tabVal = props.side === 'Supporting' ? 0 : 1;
         props.addToTree(child, tabVal);
-        console.log(toEdit);
         setToEdit('');
         setShowAddOn(false);
     }
@@ -56,7 +47,7 @@ export default function ArgumentList(props) {
                         >
                             <span>
                             <TextField
-                                placeholder="Edit node..."
+                                placeholder="Add node..."
                                 onChange={(event) => handleInputChange(event.target.value)}
                             />
                             <Button
@@ -152,7 +143,7 @@ export default function ArgumentList(props) {
                                 alignItems="center"
                             >
                                 <AddCircleIcon
-                                    htmlColor={props.side === 'Con' ? 'red' : 'green'}
+                                    htmlColor={props.side === 'Opposing' ? 'red' : 'green'}
                                 />
                             </Grid>
 

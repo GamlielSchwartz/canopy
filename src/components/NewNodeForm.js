@@ -34,7 +34,7 @@ export default function NewNodeForm(props) {
                     <Paper square>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-description">
-                                {props.side === 'Con' ? 'Opposing...' : 'Supporting...'}
+                                {props.side === 'Opposing' ? 'Opposing...' : 'Supporting...'}
                         </DialogContentText>
                         </DialogContent>
                     </Paper>

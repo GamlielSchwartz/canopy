@@ -70,6 +70,8 @@ function MiniTree(props) {
         ]
     };
 
+    const myData = props.treeData ? props.treeData : data;
+
     return (
         <Grid
             container
@@ -77,7 +79,7 @@ function MiniTree(props) {
             justify="flex-start"
             alignItems="center"
             onClick={(event) => {
-                return props.setClickedTree(data)
+                return props.setClickedTree(myData)
             }}
         >
 
@@ -85,46 +87,43 @@ function MiniTree(props) {
             return props.setClickedTree(data)
         }}> */}
             <Grid item>
+            {props.isStumped ? 
+            <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50, position: "absolute", bottom: 0, left: 0 }} />
+            : null}
+
                 <Tree
                     nodeRadius={8}
                     margins={{ top: 30, bottom: 30, left: 50, right: 50 }}
-                    data={data}
+                    data={myData}
                     height={300}
                     width={300}
                     svgProps={{
+                        className: 'custom',
                         transform: 'rotate(270)',
-                        className: 'mini-tree'
+                        // className: 'mini-tree'
                     }}
                     textProps={{
                         transform: 'rotate(90)',
-                        display: 'none',
+                        className: 'hide-me'
                     }}
                     circleProps={{
-                        className: 'ball'
+                        className: 'ball',
+                        transform: 'rotate(270)',
+                        fill: "url(#image1)",
                     }}
-                />
-            </Grid>
-            {props.isStumped
-                ?
-                <Grid
-                    item
                 >
-                    <Grid
-                        container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="flex-start"
-                    >
-                        <Grid item>
-                            Suggest a leaf!
-                        </Grid>
-                        <Grid item>
-                            <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50, position: "absolute" }} />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                : null}
-
+                    <defs>
+                        <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">
+                        <image height=".7" weight="1" preserveAspectRatio="none" href={require('./leaf.jpg')}>
+                            </image>
+                        </pattern>
+                    </defs>
+                    
+                </Tree>
+            </Grid>
+            <Grid item>
+                {myData.name}
+            </Grid>
         </Grid>
     );
 }

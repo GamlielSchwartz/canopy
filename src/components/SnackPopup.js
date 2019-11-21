@@ -102,7 +102,7 @@ export default function SnackPopup(props) {
       >
         <MySnackbarContentWrapper
           onClose={handleClose}
-          variant="success"
+          variant={props.type?props.type:"success"}
           message={props.message}
         />
       </Snackbar>

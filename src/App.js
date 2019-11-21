@@ -14,9 +14,17 @@ function App() {
     const [currentRoute, setCurrentRoute] = useState('/home');
     const [clickedFriendTree, setClickedFriendTree] = useState();
     const [shouldShowAlerts, setShouldShowAlerts] = useState(false);
+    const [tabValue, setTabValue] = React.useState(1);
+
+    function changeTabVal(newVal) {
+        setTabValue(newVal);
+    }
 
     const changeRoute = (route) => {
         setCurrentRoute(route);
+        if (route === '/home') {
+            setTabValue(1);
+        }
     };
 
     const handleClickedFriendTree = (data) => {
@@ -56,10 +64,13 @@ function App() {
                 numNotifications={numNotifications}
                 showAlerts={showAlerts}
             /> */}
-            <Navigator changeRoute={changeRoute} />
+            <Navigator
+                changeRoute={changeRoute}
+                tabValue={tabValue}
+                changeTabVal={changeTabVal}
+            />
             <Router>
                 {/* For some reason history not being pushed so can't move forward/back w/ browser arrows */}
-                <Switch>
                     <Route path="/home" render={
                         () => <Home
                             setClickedTree={handleClickedFriendTree}
@@ -67,21 +78,21 @@ function App() {
                     />
                     <Route path="/buildTree" render={
                         () => <BuildTree
-                            shouldShowAlerts={shouldShowAlerts}
-                            showAlerts={showAlerts}
+                            // shouldShowAlerts={shouldShowAlerts}
+                            // showAlerts={showAlerts}
+                            changeRoute={changeRoute}
                         />}
                     />
                     <Route path="/friendTree" render={
                         () =>
                             <FriendTree
-                                data={clickedFriendTree}
+                                fullTree={clickedFriendTree}
                                 addNotification={addNotification}
                             />}
                     />
                     <Route path="/profile" render={
                         () => <Profile />}
                     />
-                </Switch>
                 <Redirect to={currentRoute} />
             </Router>
         </div>

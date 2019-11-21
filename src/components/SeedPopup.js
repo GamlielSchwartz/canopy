@@ -37,6 +37,9 @@ export default function SeedPopup(props) {
                     />
                 </DialogContent>
                 <DialogActions>
+                    <Button onClick={()=> props.close()} color="primary">
+                        Cancel
+                    </Button>
                     <Button onClick={handleAcceptSuggestion} color="primary">
                         Start
                     </Button>

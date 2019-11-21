@@ -18,6 +18,10 @@ svg.custom .node text {
   height: 100%;
 }
 
+.tabLabel {
+  font-weight: 'bold';
+}
+
 svg.custom .node {
   cursor: pointer;
 }

@@ -119,7 +119,7 @@ function ProCon(props) {
                     <ArgumentList xs={6}
                         onNodeClick={props.onNodeClick}
                         listItems={props.pros}
-                        side="Pro"
+                        side="Supporting"
                         addToTree={addToTree}
                     />
                 </Grid>
@@ -127,7 +127,7 @@ function ProCon(props) {
                     <ArgumentList xs={6}
                         onNodeClick={props.onNodeClick}
                         listItems={props.cons}
-                        side="Con"
+                        side="Opposing"
                         addToTree={addToTree}
                     />
 
