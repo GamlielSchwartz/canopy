@@ -30,19 +30,19 @@ svg.custom path.link {
 	fill: none;
   /* stroke: #2593B8; */
   stroke: #8B0000;
-	stroke-width: 1.5px;
+	stroke-width: 1.7px;
 }
 
 .con-node {
   fill: red;
   stroke: red;
-	stroke-width: 2px;
+	stroke-width: 4px;
 }
 
 .pro-node {
   fill: green;
   stroke: green;
-	stroke-width: 2px;
+	stroke-width: 4px;
 }
 
 .ball {

@@ -10,6 +10,7 @@ import getNode from '../utils/getChildren';
 import { makeStyles } from '@material-ui/core/styles';
 import removeNode from '../utils/removeNode';
 import editNode2 from '../utils/editNode';
+import DemoProCon from './DemoProCon';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -88,16 +89,11 @@ export default function BuildTree(props) {
         console.log(JSON.stringify(data));
         addNode2(parent, newChild, tabValue)
     }
-    const [oldToggleNode, setOldToggleNode] = useState([]);
     function onNodeClick(node) {
-
-        setOldToggleNode(toggleNode);
+        setHasClickedNode(true);
         setToggleNode(node);
     }
 
-    function navigateBackwards(){
-
-    }
 
     async function addNode2(parent, childText, tabValue) {
 
@@ -121,7 +117,8 @@ export default function BuildTree(props) {
 
     const [isStumped, setIsStumped] = useState(false);
     const [showSnackBar, setShowSnackBar] = useState(false);
-    const [nodeUnderMouse, setNodeUnderMouse] = useState('Hover over a leaf to display argument...');
+    const [nodeUnderMouse, setNodeUnderMouse] = useState('');
+    const [haveCLickedNode, setHasClickedNode] = useState(false);
     function toggleStumpedStatus() {
         // if (!isStumped) setShowSnackBar(true);
         setShowSnackBar(true);
@@ -133,6 +130,7 @@ export default function BuildTree(props) {
 
     function displayMouseOver(node) {
         // console.log(node)
+        setHasClickedNode(false);
         setNodeUnderMouse(node);
     }
 
@@ -145,7 +143,7 @@ export default function BuildTree(props) {
                     onNodeClick(node);
                 },
                 "onMouseOver": (e, node) => displayMouseOver(node),
-                "onMouseOut": () => displayMouseOver('Hover over a leaf to display argument...')
+                "onMouseOut": () => displayMouseOver('')
             }
         };
         setData(newData);
@@ -185,7 +183,7 @@ export default function BuildTree(props) {
             }
         propsData.gProps.onMouseOver =
             (event, node) => displayMouseOver(node)
-        propsData.gProps.onMouseOut = () => displayMouseOver('Hover over a leaf to display argument...')
+        propsData.gProps.onMouseOut = () => displayMouseOver('')
         const children = propsData.children;
         if (!children) return;
         for (var i = 0; i < children.length; i++) {
@@ -229,12 +227,21 @@ export default function BuildTree(props) {
                     >
                         {props.backToProfile ?
                             <span>
-                                <Button variant="contained" onClick={props.backToProfile}>Back To Profile</Button>
-                                <span style={{ paddingLeft: 10 }}>{nodeUnderMouse}</span>
+                                <Button
+                                    variant="contained"
+                                    onClick={props.backToProfile}>
+                                    Back To Profile
+                                </Button>
+                                <span
+                                    style={{ paddingLeft: 10 }}>
+                                    Hover over a leaf to display argument...
+                                </span>
                             </span>
                             :
-                             nodeUnderMouse 
-
+                            <span
+                            style={{ paddingLeft: 10 }}>
+                            Hover over a leaf to display argument...
+                        </span>
                         }
                     </Grid>
                 </Paper>
@@ -278,8 +285,12 @@ export default function BuildTree(props) {
                                 width: 100,
                                 height: 50,
                                 position: "absolute",
-                                bottom: 0,
-                                left: 0
+                                bottom: 50,
+                                right: 50,
+                                '-moz-border-radius': '100px', /* or 50% */
+                                'border-radius': '100px', /* or 50% */
+                                'background-color': 'green',
+                                border: '2px solid black'
                             }
                         }
                     />
@@ -287,6 +298,7 @@ export default function BuildTree(props) {
             </Grid>
             <Grid item xs={6}>
                 <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
+                    {nodeUnderMouse && !haveCLickedNode ? <DemoProCon potentialNode={nodeUnderMouse}/> : 
                     <ProCon
                         isRoot={toggleNode === data.name}
                         editNode={editNode}
@@ -296,7 +308,7 @@ export default function BuildTree(props) {
                         addToTree={addToTree}
                         pros={clickedProChildren}
                         cons={clickedConChildren}
-                    />
+                    /> }
                 </Paper>
             </Grid>
         </Grid>

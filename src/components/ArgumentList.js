@@ -17,15 +17,15 @@ export default function ArgumentList(props) {
     const [showAddOn, setShowAddOn] = React.useState(false);
     const [toEdit, setToEdit] = React.useState('');
 
-    function showAddOnListItem(shouldShow){
+    function showAddOnListItem(shouldShow) {
         setShowAddOn(shouldShow)
     }
 
-    function handleInputChange(newVal){
+    function handleInputChange(newVal) {
         setToEdit(newVal);
     }
 
-    function handleSaveNewItem(){
+    function handleSaveNewItem() {
         var child = toEdit;
         var tabVal = props.side === 'Supporting' ? 0 : 1;
         props.addToTree(child, tabVal);
@@ -45,23 +45,23 @@ export default function ArgumentList(props) {
                             alignItems="center"
                         >
                             <span>
-                            <TextField
-                                placeholder="Add node..."
-                                onChange={(event) => handleInputChange(event.target.value)}
-                            />
-                            <Button
-                                color="primary"
-                                onClick={(() => showAddOnListItem(false))}
-                            >
-                                <ClearIcon />
-                            </Button>
-                            <Button
-                                color="primary"
-                                onClick={() => handleSaveNewItem()}
-                            >
-                                <DoneIcon />
-                            </Button>
-                        </span>
+                                <TextField
+                                    placeholder="Add node..."
+                                    onChange={(event) => handleInputChange(event.target.value)}
+                                />
+                                <Button
+                                    color="primary"
+                                    onClick={(() => showAddOnListItem(false))}
+                                >
+                                    <ClearIcon />
+                                </Button>
+                                <Button
+                                    color="primary"
+                                    onClick={() => handleSaveNewItem()}
+                                >
+                                    <DoneIcon />
+                                </Button>
+                            </span>
                         </Grid>
                     </Grid>
                 </ListItem>
@@ -87,7 +87,13 @@ export default function ArgumentList(props) {
             >
                 <Grid>
                     <ListItem>
-                        <ListItemText primary={props.side} />
+                        <ListItemText
+                            disableTypography
+                            primary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '22px' }}>{props.side}</Typography>}
+
+                        // primary={props.side} 
+
+                        />
                     </ListItem>
                 </Grid>
             </Grid>

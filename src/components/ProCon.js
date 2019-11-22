@@ -51,11 +51,12 @@ function ProCon(props) {
             alignItems="center"
         >
             <Paper className={classes.root}>
-                <Grid item xs={12}>
-                    {/* <Button
-                        color="primary"
-                        onClick={() => props.deleteNode(props.parentNode)}
-                    >Delete Node (and children)</Button> */}
+                <Grid
+                    container
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="center"
+                >
                     {showEditable ?
                         <span>
                             <TextField
@@ -77,10 +78,16 @@ function ProCon(props) {
                                 <DoneIcon />
                             </Button>
                         </span>
-                        : <span><span>{props.parentNode}</span>
+
+                        :                <Grid
+                        container
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="center"
+                    >
                             {
                                 props.isRoot ? null :
-                                    <span>
+                                    <Grid item xs={2}>
                                         <Button
                                             color="primary"
                                             onClick={() => toggleEditableNode(true)}
@@ -92,20 +99,11 @@ function ProCon(props) {
                                             onClick={() => props.deleteNode(props.parentNode)}
                                         ><DeleteIcon />
                                         </Button>
-                                    </span>
+                                    </Grid>
                             }
-
-                        </span>
+                            <Grid item xs={10} style={{ fontWeight: 'bold', fontSize: '28px' }}>{props.parentNode}</Grid>
+                        </Grid>
                     }
-
-                    {/* <TextField
-                        placeholder="Edit node..."
-                        // onMouseDown={()=> setToEdit(props.parentNode)}
-                        onChange={(event) => handleInputChange(event.target.value)}
-                        value={toEdit}
-                    /> */}
-
-
                 </Grid>
             </Paper>
 
