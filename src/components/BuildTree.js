@@ -87,32 +87,16 @@ export default function BuildTree(props) {
     function addToTree(parent, newChild, tabValue) {
         console.log(JSON.stringify(data));
         addNode2(parent, newChild, tabValue)
-        // setNewNodeFormSide(side);
-        // setNewNodeFormOpen(true);
+    }
+    const [oldToggleNode, setOldToggleNode] = useState([]);
+    function onNodeClick(node) {
+
+        setOldToggleNode(toggleNode);
+        setToggleNode(node);
     }
 
-    function onNodeClick(node) {
-        // setNewNodeFormOpen(shouldOpenForm);
-        // setClickedNode(node);
-        setToggleNode(node);
-        // console.log("data on click2:");
-        // console.log(data);
-        // if (data){
-        //     var clickedNode = getNode(node, data, this);
-        //     console.log(clickedNode);
-        // }
+    function navigateBackwards(){
 
-        // if (!data) {
-        //     console.log("no data");
-        //     return;
-        // }
-        // var wholeNode = getNode(node, data, this);
-        // console.log(wholeNode);
-        // var myNode = getNode(node, data, this);
-        // console.log(myNode)
-        // var children = myNode.children;
-        // setClickedProChildren(children ? children : []);
-        // setShowProCon(true);
     }
 
     async function addNode2(parent, childText, tabValue) {
@@ -229,7 +213,7 @@ export default function BuildTree(props) {
                 <SnackPopup
                     type={isStumped ? null : "info"}
                     close={closeSnackbar}
-                    message={isStumped ? "Letting other users know you are STUMPED!" : "No longer STUMPED!"}
+                    message={isStumped ? "Letting other users know you are 'stumped'!" : "No longer 'stumped'!"}
                 />
                 :
                 null

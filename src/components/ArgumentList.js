@@ -10,8 +10,7 @@ import { Typography, Grid, TextField, Button } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
-
+import DoneIcon from '@material-ui/icons/Done';
 
 
 export default function ArgumentList(props) {
@@ -60,7 +59,7 @@ export default function ArgumentList(props) {
                                 color="primary"
                                 onClick={() => handleSaveNewItem()}
                             >
-                                <SaveAltIcon />
+                                <DoneIcon />
                             </Button>
                         </span>
                         </Grid>

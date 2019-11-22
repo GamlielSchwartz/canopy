@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
-import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import DoneIcon from '@material-ui/icons/Done';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -74,7 +74,7 @@ function ProCon(props) {
                                 color="primary"
                                 onClick={() => saveEditedNode()}
                             >
-                                <SaveAltIcon />
+                                <DoneIcon />
                             </Button>
                         </span>
                         : <span><span>{props.parentNode}</span>
