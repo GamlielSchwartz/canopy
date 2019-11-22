@@ -1,68 +1,56 @@
 export const first = {
-    "name": "iPhone is better than Android",
-    "gProps": {
-        "className": 'pro-node',
+  "name": "iPhone is better than Android",
+  "gProps": {
+    "className": "pro-node"
+  },
+  "children": [
+    {
+      "name": "iphone has a nice user interface",
+      "gProps": {
+        "className": "pro-node"
+      }
     },
-    "children": [
+    {
+      "name": "android is cheaper",
+      "gProps": {
+        "className": "con-node"
+      }
+    },
+    {
+      "name": "android is easier to develop for",
+      "gProps": {
+        "className": "con-node"
+      },
+      "children": [
         {
-            "name": "Cain",
-            "gProps": {
-                "className": 'con-node',
+          "name": "its 25 bucks for permanent access to app store!",
+          "gProps": {
+            "className": "pro-node"
+          },
+          "children": [
+            {
+              "name": "and that means there's a bunch of junk in the app store",
+              "gProps": {
+                "className": "con-node"
+              }
             }
+          ]
         },
         {
-            "name": "Seth",
-            "gProps": {
-                "className": 'con-node',
-            },
-            "children": [
-                {
-                    "name": "Enos",
-                    "gProps": {
-                        "className": 'con-node',
-                    }
-                },
-                {
-                    "name": "Noam",
-                    "gProps": {
-                        "className": 'pro-node',
-                    }
-                },
-                {
-                    "name": "Other guy",
-                    "gProps": {
-                        "className": 'con-node',
-                    }
-                }
-            ]
-        },
-        {
-            "name": "Abel",
-            "gProps": {
-                "className": 'con-node',
-            }
-        },
-        {
-            "name": "Awan",
-            "gProps": {
-                "className": 'pro-node',
-            },
-            "children": [
-                {
-                    "name": "Enoch",
-                    "gProps": {
-                        "className": 'con-node',
-                    }
-                }
-            ]
-        },
-        {
-            "name": "Azura",
-            "gProps": {
-                "className": 'pro-node',
-            }
+          "name": "but if you develop for iPhone that's OG",
+          "gProps": {
+            "className": "con-node"
+          }
         }
-    ]
+      ]
+    },
+    {
+      "name": "iphone is so sleek",
+      "gProps": {
+        "className": "pro-node"
+      }
+    }
+  ]
 };
 
 export const second = {

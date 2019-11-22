@@ -4,38 +4,43 @@ import MiniTree from './MiniTree';
 import { first, second, third } from './dummyTrees';
 import BuildTree from './BuildTree';
 
-function Profile() {
+function Profile(props) {
 
     const [clickedTree, setClickedTree] = useState(null);
 
     const handleClickedTree = (data) => {
         console.log(data);
         setClickedTree(data);
+        props.setClickedExistingTree(data);
+        props.changeRoute('/existingTree');
     }
+
+
+
+
 
     return (
         <div>
             {
-                clickedTree
-                    ?
-                    <div>
-                        <BuildTree
-                            startingPosition="Cats are better than dogs"
-                            proOrCon='pro-node'
-                            existingData={clickedTree}
-                        />
-                    </div>
-                    :
+                // clickedTree
+                //     ?
+                //     <div>
+                //         <BuildTree
+                //             existingData={clickedTree}
+                //             backToProfile={props.backToProfile}
+                //         />
+                //     </div>
+                //     :
                     <Paper style={{ maxHeight: window.innerHeight * 1, overflow: 'auto' }}>
                         <List component="nav" aria-label="main mailbox folders">
                             <ListItem>
-                                <MiniTree setClickedTree={handleClickedTree} treeData={first} />
+                                <MiniTree setClickedTree={handleClickedTree} treeData={third} />
                             </ListItem>
                             <ListItem>
                                 <MiniTree setClickedTree={handleClickedTree} treeData={second} />
                             </ListItem>
                             <ListItem>
-                                <MiniTree setClickedTree={handleClickedTree} treeData={third} />
+                                <MiniTree setClickedTree={handleClickedTree} treeData={first} />
                             </ListItem>
                         </List>
                     </Paper>

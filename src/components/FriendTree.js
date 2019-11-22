@@ -113,7 +113,7 @@ import SuggestionForm from './SuggestionForm';
 
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-tree-graph'
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid, Button } from '@material-ui/core';
 // import NewNodeForm from './NewNodeForm';
 import addNode from '../utils/addNode';
 import SnackPopup from './SnackPopup';
@@ -329,7 +329,7 @@ export default function FriendTree(props) {
 
     const [showSuggestionForm, setShowSuggestionForm] = useState(false);
     const [suggestionSent, setSuggestionSent] = useState(false)
-    function toggleSuggestionBanner(toggle){
+    function toggleSuggestionBanner(toggle) {
         setSuggestionSent(false);
         setShowSuggestionForm(toggle);
     }
@@ -373,7 +373,10 @@ export default function FriendTree(props) {
                         justify="center"
                         alignItems="flex-start"
                     >
-                        {nodeUnderMouse}
+                        <span>
+                            <Button variant="contained" onClick={props.backToHome}>Back to Forest</Button>
+                            <span style={{paddingLeft: 10}}>{nodeUnderMouse}</span>
+                        </span>
                     </Grid>
                 </Paper>
                 <Paper style={{ height: window.innerHeight * .85, overflow: 'auto' }}>

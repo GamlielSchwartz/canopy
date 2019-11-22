@@ -32,6 +32,14 @@ function App() {
         setCurrentRoute('/friendTree')
     }
 
+    function backToHome() {
+        setCurrentRoute('/home')
+    }
+
+    function backToProfile() {
+        setCurrentRoute('/profile')
+    }
+
     function showAlerts(shouldShow) {
         setShouldShowAlerts(shouldShow);
     }
@@ -47,6 +55,12 @@ function App() {
 
     function acceptSuggestion(data) {
         console.log(data);
+    }
+
+    const [existingTree, setExistingTree] = useState({});
+
+    function setClickedExistingTree(tree){
+        setExistingTree(tree);
     }
 
 
@@ -71,28 +85,40 @@ function App() {
             />
             <Router>
                 {/* For some reason history not being pushed so can't move forward/back w/ browser arrows */}
-                    <Route path="/home" render={
-                        () => <Home
-                            setClickedTree={handleClickedFriendTree}
+                <Route path="/home" render={
+                    () => <Home
+                        setClickedTree={handleClickedFriendTree}
+                    />}
+                />
+                <Route path="/buildTree" render={
+                    () => <BuildTree
+                        // shouldShowAlerts={shouldShowAlerts}
+                        // showAlerts={showAlerts}
+                        changeRoute={changeRoute}
+                    />}
+                />
+                <Route path="/friendTree" render={
+                    () =>
+                        <FriendTree
+                            backToHome={backToHome}
+                            fullTree={clickedFriendTree}
+                            addNotification={addNotification}
                         />}
-                    />
-                    <Route path="/buildTree" render={
-                        () => <BuildTree
-                            // shouldShowAlerts={shouldShowAlerts}
-                            // showAlerts={showAlerts}
-                            changeRoute={changeRoute}
-                        />}
-                    />
-                    <Route path="/friendTree" render={
-                        () =>
-                            <FriendTree
-                                fullTree={clickedFriendTree}
-                                addNotification={addNotification}
-                            />}
-                    />
-                    <Route path="/profile" render={
-                        () => <Profile />}
-                    />
+                />
+                <Route path="/existingTree" render={
+                    () =>
+                        <BuildTree
+                            existingData={existingTree}
+                            backToProfile={backToProfile}
+                        />
+                }
+                />
+                <Route path="/profile" render={
+                    () => <Profile
+                    setClickedExistingTree={setClickedExistingTree}
+                    changeRoute={changeRoute}
+                    />}
+                />
                 <Redirect to={currentRoute} />
             </Router>
         </div>

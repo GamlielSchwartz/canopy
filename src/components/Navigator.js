@@ -35,7 +35,8 @@ function Navigator(props) {
                 onChange={handleChange}
                 aria-label="disabled tabs example"
             >
-                <Tab label={<span style={{fontWeight:'bold', color:'black'}}>Canopy</span>} disabled />
+                {/* <span style={{fontWeight:'bold', color:'dark-green', fontSize: 30}}>Canopy</span> */}
+                <Tab label={<span style={{fontWeight:'bold', color:'#005000', fontSize: 30}}>Canopy</span>} disabled />
                 {tabs.map((item, index) => {
                     return <Tab label={<span style={{fontWeight:'bold',zIndex: 6}}>{item}</span>} key={index} />
                 })}

@@ -79,6 +79,7 @@ function MiniTree(props) {
             justify="flex-start"
             alignItems="center"
             onClick={(event) => {
+                // if (!props.isStumped) return;
                 return props.setClickedTree(myData)
             }}
         >
@@ -87,9 +88,12 @@ function MiniTree(props) {
             return props.setClickedTree(data)
         }}> */}
             <Grid item>
-            {props.isStumped ? 
-            <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50, position: "absolute", bottom: 0, left: 0 }} />
-            : null}
+                {props.isStumped ?
+                    <div style={{position: "absolute", bottom: 0, left: 0 }}>
+                        <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50 }} />
+                        {/* <div>They are Stumped! Suggest a Leaf!</div> */}
+                    </div>
+                    : null}
 
                 <Tree
                     nodeRadius={8}
@@ -114,11 +118,11 @@ function MiniTree(props) {
                 >
                     <defs>
                         <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">
-                        <image height=".7" weight="1" preserveAspectRatio="none" href={require('./leaf.jpg')}>
+                            <image height=".7" weight="1" preserveAspectRatio="none" href={require('./leaf.jpg')}>
                             </image>
                         </pattern>
                     </defs>
-                    
+
                 </Tree>
             </Grid>
             <Grid item>

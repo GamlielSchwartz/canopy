@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-tree-graph'
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid, Button } from '@material-ui/core';
 // import NewNodeForm from './NewNodeForm';
 import addNode from '../utils/addNode';
 import SnackPopup from './SnackPopup';
@@ -138,7 +138,7 @@ export default function BuildTree(props) {
     const [isStumped, setIsStumped] = useState(false);
     const [showSnackBar, setShowSnackBar] = useState(false);
     const [nodeUnderMouse, setNodeUnderMouse] = useState('Hover over a leaf to display argument...');
-    function toggleStumpedStatus(){
+    function toggleStumpedStatus() {
         // if (!isStumped) setShowSnackBar(true);
         setShowSnackBar(true);
         setIsStumped(!isStumped);
@@ -231,7 +231,7 @@ export default function BuildTree(props) {
                     close={closeSnackbar}
                     message={isStumped ? "Letting other users know you are STUMPED!" : "No longer STUMPED!"}
                 />
-                :                 
+                :
                 null
             }
 
@@ -241,9 +241,17 @@ export default function BuildTree(props) {
                         container
                         direction="column"
                         justify="center"
-                        alignItems="center"
+                        alignItems="flex-start"
                     >
-                        {nodeUnderMouse}
+                        {props.backToProfile ?
+                            <span>
+                                <Button variant="contained" onClick={props.backToProfile}>Back To Profile</Button>
+                                <span style={{ paddingLeft: 10 }}>{nodeUnderMouse}</span>
+                            </span>
+                            :
+                             nodeUnderMouse 
+
+                        }
                     </Grid>
                 </Paper>
                 <Paper style={{ height: window.innerHeight * .85, overflow: 'auto' }}>
