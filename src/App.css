@@ -42,7 +42,8 @@ svg.custom path.link {
 .pro-node {
   fill: green;
   stroke: green;
-	stroke-width: 4px;
+  stroke-width: 4px;
+  
 }
 
 .ball {
@@ -69,4 +70,8 @@ svg.mini-tree {
   fill: none;
   stroke: black;
   stroke-width: 1.5px;
+}
+
+u {
+  cursor: pointer;
 }

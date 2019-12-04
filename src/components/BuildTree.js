@@ -287,9 +287,9 @@ export default function BuildTree(props) {
                                 position: "absolute",
                                 bottom: 50,
                                 right: 50,
-                                '-moz-border-radius': '100px', /* or 50% */
-                                'border-radius': '100px', /* or 50% */
-                                'background-color': 'green',
+                                'MozBorderRadius': '100px', /* or 50% */
+                                'borderRadius': '100px', /* or 50% */
+                                'backgroundColor': 'green',
                                 border: '2px solid black'
                             }
                         }

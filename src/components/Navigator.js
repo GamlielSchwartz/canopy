@@ -27,8 +27,8 @@ function Navigator(props) {
 
         <Paper square style={{color: 'white', fontWeight:'bold'}}>
             <Tabs
-                TabIndicatorProps={{style: {background:'#965f1b', height: '100%', zIndex: 5, borderRadius: 10, transition: '0ms'}}}
-                style={{ backgroundColor: '#B67D3A', fontFamily: 'Acme', fontWeight: 'bold' }}
+                TabIndicatorProps={{style: {background:'#b2855e9a', height: '100%', zIndex: 5, borderRadius: 10, transition: '0ms'}}}
+                style={{ backgroundColor: 'rgb(112,65,22)', fontFamily: 'Acme', fontWeight: 'bold' }}
                 value={props.tabValue}
                 indicatorColor="primary"
                 textColor="inherit"
@@ -36,7 +36,7 @@ function Navigator(props) {
                 aria-label="disabled tabs example"
             >
                 {/* <span style={{fontWeight:'bold', color:'dark-green', fontSize: 30}}>Canopy</span> */}
-                <Tab label={<span style={{fontWeight:'bold', color:'#005000', fontSize: 30}}>Canopy</span>} disabled />
+                <Tab label={<span style={{fontWeight:'bold', color:'#005000', fontSize: 30, fontFamily:'Arvo'}}>Canopy</span>} disabled />
                 {tabs.map((item, index) => {
                     return <Tab label={<span style={{fontWeight:'bold',zIndex: 6}}>{item}</span>} key={index} />
                 })}

@@ -79,12 +79,12 @@ function ProCon(props) {
                             </Button>
                         </span>
 
-                        :                <Grid
-                        container
-                        direction="row"
-                        justify="flex-start"
-                        alignItems="center"
-                    >
+                        : <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="center"
+                        >
                             {
                                 props.isRoot ? null :
                                     <Grid item xs={2}>
