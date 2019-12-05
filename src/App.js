@@ -11,7 +11,7 @@ import SuggestionPopup from './components/SuggestionPopup';
 import { Grid } from '@material-ui/core';
 import { NUM_SECONDS_UNTIL_ALERT } from './components/constants';
 import Button from '@material-ui/core/Button';
-import { first, second, third, unbalanced, unbalanced2 } from './components/dummyTrees';
+import { first, second, third, unbalanced, unbalanced2, complex } from './components/dummyTrees';
 
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
         setShowGotAlert(false);
         setAlertToggle(false);
     }
-    const allTreesToDisplay = [first, second, third, unbalanced, unbalanced2];
+    const allTreesToDisplay = [first, complex, second, third, unbalanced, unbalanced2];
     const [displayTrees, setDisplayTrees] = React.useState(allTreesToDisplay);
     const [filterToggle, setFilterToggle] = React.useState(true);
     const [showButton, setShowButton] = React.useState(true);
@@ -135,14 +135,15 @@ function App() {
             >
                 {
                     showButton ? 
-                    <span>
+                    filterToggle ?
                             <Button
                                 variant="contained"
                                 // color="primary"
                                 onClick={() => filterTrees(true)}
                             >
-                                Show Unbalanced Trees
+                                Show Only Unbalanced Trees
                             </Button>
+                            :
                             <Button
                                 variant="contained"
                                 // color="primary"
@@ -150,7 +151,6 @@ function App() {
                             >
                                 Show All Trees
                             </Button>
-                            </span>
                     : null
                 }
                 

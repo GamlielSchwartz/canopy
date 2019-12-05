@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { topbarBrown } from './constants';
 
 export default function SuggestionForm(props) {
     const [currText, updateText] = useState("");
@@ -34,10 +35,12 @@ export default function SuggestionForm(props) {
     return (
         <div>
             <Dialog open={true} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Suggestion</DialogTitle>
+                <DialogTitle id="form-dialog-title" style={{ textAlign: 'center', backgroundColor: topbarBrown, color: 'white', fontFamily: 'Raleway', fontWeight:'bold' }}>Make a Suggestion</DialogTitle>
                 <DialogContent>
+
                     <Paper square>
                         <Tabs
+                            variant="fullWidth"
                             value={tabValue}
                             indicatorColor="primary"
                             textColor="primary"
@@ -49,7 +52,7 @@ export default function SuggestionForm(props) {
                         </Tabs>
                     </Paper>
                     <DialogContentText>
-                        <br/>
+                        <br />
                         {props.clickedNode}
                     </DialogContentText>
                     <TextField

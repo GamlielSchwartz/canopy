@@ -91,14 +91,14 @@ function MiniTree(props) {
         }}> */}
             <Grid item>
                 {props.isStumped ?
-                    <div style={{position: "absolute", bottom: 0, left: 0, zIndex: 1000 }}>
+                    <div style={{ position: "absolute", bottom: 0, left: 0, zIndex: 1000 }}>
                         <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50 }} />
                         {/* <div>They are Stumped! Suggest a Leaf!</div> */}
                     </div>
                     : null}
 
                 <Tree
-                    nodeRadius={8}
+                    nodeRadius={14}
                     margins={{ top: 30, bottom: 30, left: 50, right: 50 }}
                     data={myData}
                     height={300}
@@ -114,17 +114,19 @@ function MiniTree(props) {
                     }}
                     circleProps={{
                         className: 'ball',
-                        transform: 'rotate(270)',
+                        transform: 'rotate(90)',
                         // fill: "url(#image1)",
                     }}
                 >
-                        {imageDefs}
+                    {imageDefs}
 
                 </Tree>
             </Grid>
             <Grid item>
-                <div style={{marginLeft:15}}>{myData.name}</div>
-                
+                {props.author ? <div style={{ marginLeft: 15 }}>authored by: <strong>{props.author}</strong></div> : 
+                <div style={{ marginLeft: 15 }}>authored by: <strong>you</strong></div>}
+                    <br/>
+                <div style={{ marginLeft: 15 }}><i>{myData.name}</i></div>
             </Grid>
         </Grid>
     );

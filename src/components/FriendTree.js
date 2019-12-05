@@ -384,7 +384,7 @@ export default function FriendTree(props) {
                 <Paper style={{ height: window.innerHeight * .85, overflow: 'auto' }}>
                     <Tree
                         margins={{ bottom: 50, left: 100, right: 100, top: 20 }}
-                        nodeRadius={15}
+                        nodeRadius={25}
                         data={getRealData()}
                         height={dimensions.height / 2}
                         width={dimensions.width / 2}
@@ -398,7 +398,7 @@ export default function FriendTree(props) {
                         }}
                         circleProps={{
                             className: 'ball',
-                            transform: 'rotate(270)',
+                            transform: 'rotate(90)',
                             // fill: "url(#image1)",
                         }}
                     >

@@ -101,7 +101,7 @@ function ProCon(props) {
                                             </Button>
                                         </Grid>
                             }
-                            <Grid item xs={props.isRoot ? 12 : 10} style={{ fontWeight: 'bold', fontSize: '28px' }}>{props.parentNode}</Grid>
+                            <Grid item xs={props.isRoot ? 12 : 10} style={{ fontWeight: 'bold', fontSize: '28px', fontFamily:'Raleway' }}>{props.parentNode}</Grid>
                         </Grid>
                     }
                 </Grid>

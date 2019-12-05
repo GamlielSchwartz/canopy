@@ -89,7 +89,7 @@ export default function ArgumentList(props) {
                     <ListItem>
                         <ListItemText
                             disableTypography
-                            primary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '22px' }}>{props.side}</Typography>}
+                            primary={<Typography type="body2" style={{ fontWeight: 'bold', fontSize: '22px', fontFamily:'Raleway' }}>{props.side}</Typography>}
 
                         // primary={props.side} 
 
@@ -115,7 +115,7 @@ export default function ArgumentList(props) {
                                         primary={
                                             <Typography
                                                 type="body2"
-                                                style={{ color: 'black' }}
+                                                style={{ color: 'black', fontFamily: 'Lato' }}
                                             >
                                                 {item.name}
                                             </Typography>

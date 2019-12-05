@@ -98,6 +98,11 @@ text {
 
 }
 
+.test {
+  color:white;
+  opacity: 1;
+}
+
 .hide-me {
   display: none;
 }

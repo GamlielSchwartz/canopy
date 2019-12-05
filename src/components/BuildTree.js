@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-tree-graph'
-import { Paper, Grid, Button } from '@material-ui/core';
+import { Paper, Grid, Button, Tooltip } from '@material-ui/core';
 // import NewNodeForm from './NewNodeForm';
 import addNode from '../utils/addNode';
 import SnackPopup from './SnackPopup';
@@ -12,6 +12,10 @@ import removeNode from '../utils/removeNode';
 import editNode2 from '../utils/editNode';
 import DemoProCon from './DemoProCon';
 import { imageDefs } from './constants';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -123,6 +127,10 @@ export default function BuildTree(props) {
     function toggleStumpedStatus() {
         // if (!isStumped) setShowSnackBar(true);
         setShowSnackBar(true);
+        setStumpedTTHeader(isStumped ? "Ask for input from other users!"
+            : "Unstump yourself!");
+        setStumpedTTBody(isStumped ? "Click this button to let others know you want input and allow them to sent you suggestions."
+            : "Click this button if you want to stop receiving suggestions for this tree.");
         setIsStumped(!isStumped);
     }
     function closeSnackbar() {
@@ -171,7 +179,20 @@ export default function BuildTree(props) {
         setDeletingNode(true);
     }
 
+    const HtmlTooltip = withStyles(theme => ({
+        tooltip: {
+            backgroundColor: '#f5f5f9',
+            color: 'rgba(0, 0, 0, 0.87)',
+            maxWidth: 220,
+            fontSize: theme.typography.pxToRem(12),
+            fontFamily: 'Lato',
+            border: '1px solid #dadde9',
+        },
+    }))(Tooltip);
 
+
+    const [stumpedTTHeader, setStumpedTTHeader] = React.useState("Ask for input from other users!");
+    const [stumpedTTBody, setStumpedTTBody] = React.useState("Click this button to let others know you want input and allow them to sent you suggestions.");
 
     function makeNodesClickable(propsData) {
         if (!propsData) return { name: "hello" };
@@ -226,31 +247,51 @@ export default function BuildTree(props) {
                         justify="center"
                         alignItems="flex-start"
                     >
-                        {props.backToProfile ?
-                            <span>
-                                <Button
-                                    variant="contained"
-                                    onClick={props.backToProfile}>
-                                    Back To Profile
+
+                        <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="center"
+                        >
+                            {props.backToProfile ?
+                                <Grid item>
+                                    <Button
+                                        variant="contained"
+                                        onClick={props.backToProfile}>
+                                        Back To Profile
                                 </Button>
-                                <span
-                                    style={{ paddingLeft: 10 }}>
-                                    Hover over a leaf to display argument...
-                                </span>
-                            </span>
-                            :
-                            <span
-                                style={{ paddingLeft: 10 }}>
+                                </Grid>
+                                : null}
+                            <Grid item>
+                                <span style={{ fontFamily: 'Lato' }}>
+                            
                                 Hover over a leaf to display argument...
-                        </span>
-                        }
+                                </span>
+                                </Grid>
+                            <Grid item>
+                                <HtmlTooltip
+                                    title={
+                                        <React.Fragment>
+                                            <Typography color="inherit">{"Start Building Your Tree!"}</Typography>
+                                            <hr />
+                                            {`Start adding supporting and opposing arguments to your "Seed" argument in the list on the right. Then navigate to new nodes either by clicking the text in the list or by clicking a node in the tree!`}
+                                        </React.Fragment>
+                                    }
+                                >
+                                    <HelpOutlineOutlinedIcon />
+                                </HtmlTooltip>
+
+                            </Grid>
+                        </Grid>
+
                     </Grid>
                 </Paper>
                 <Paper style={{ height: window.innerHeight * .85, overflow: 'auto' }}>
 
                     <Tree
                         margins={{ bottom: 50, left: 100, right: 100, top: 20 }}
-                        nodeRadius={15}
+                        nodeRadius={25}
                         data={data}
                         height={550}
                         width={dimensions.width / 2}
@@ -264,30 +305,40 @@ export default function BuildTree(props) {
                         }}
                         circleProps={{
                             className: 'ball',
-                            transform: 'rotate(270)',
+                            transform: 'rotate(90)',
                             // fill: "url(#image1)",
                         }}
                     >
                         {imageDefs}
                     </Tree>
-                    <img
-                        onClick={toggleStumpedStatus}
-                        src={isStumped ? require('../stump.png') : require('../gray_stump.gif')}
-                        alt="alt"
-                        style={
-                            {
-                                width: 100,
-                                height: 50,
-                                position: "absolute",
-                                bottom: 50,
-                                right: 50,
-                                'MozBorderRadius': '100px', /* or 50% */
-                                'borderRadius': '100px', /* or 50% */
-                                'backgroundColor': 'green',
-                                border: '2px solid black'
-                            }
+                    <HtmlTooltip
+                        title={
+                            <React.Fragment>
+                                <Typography color="inherit">{stumpedTTHeader}</Typography>
+                                <hr />
+                                {stumpedTTBody}
+                            </React.Fragment>
                         }
-                    />
+                    >
+                        <img
+                            onClick={toggleStumpedStatus}
+                            src={isStumped ? require('../stump.png') : require('../gray_stump.gif')}
+                            alt="alt"
+                            style={
+                                {
+                                    width: 100,
+                                    height: 50,
+                                    position: "absolute",
+                                    bottom: 50,
+                                    right: 50,
+                                    'MozBorderRadius': '100px', /* or 50% */
+                                    'borderRadius': '100px', /* or 50% */
+                                    'backgroundColor': 'green',
+                                    border: '2px solid black'
+                                }
+                            }
+                        />
+                    </HtmlTooltip>
                 </Paper>
             </Grid>
             <Grid item xs={6}>

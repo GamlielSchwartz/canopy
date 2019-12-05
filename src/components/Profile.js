@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper, List, ListItem } from '@material-ui/core';
+import { Paper, List, ListItem, Divider } from '@material-ui/core';
 import MiniTree from './MiniTree';
 import { first, second, third } from './dummyTrees';
 import BuildTree from './BuildTree';
@@ -40,13 +40,16 @@ function Profile(props) {
                                 custom2={true}
                             />
                         </ListItem>
+                        <Divider/>
                         <ListItem>
                             <MiniTree
                                 setClickedTree={handleClickedTree}
                                 treeData={second}
                                 custom2={true}
+                                isStumped={true}
                             />
                         </ListItem>
+                        <Divider/>
                         <ListItem>
                             <MiniTree
                                 setClickedTree={handleClickedTree}
@@ -54,6 +57,7 @@ function Profile(props) {
                                 custom2={true}
                             />
                         </ListItem>
+                        <Divider/>
                     </List>
                 </Paper>
             }

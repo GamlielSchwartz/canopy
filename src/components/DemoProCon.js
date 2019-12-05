@@ -23,7 +23,7 @@ function DemoProCon(props) {
         >
             <Paper className={classes.root}>
                 <Grid item xs={12}>
-                <span style={{ fontWeight: 'bold', fontSize: '28px' }}>{props.potentialNode}</span>
+                <span style={{ fontWeight: 'bold', fontSize: '28px', fontFamily:'Raleway' }}>{props.potentialNode}</span>
                 </Grid>
             </Paper>
 

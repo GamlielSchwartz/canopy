@@ -210,3 +210,132 @@ export const second = {
       }
     ]
   }
+
+  export const complex = {
+    "name": "English is basically just weird German",
+    "gProps": {
+      "className": "seed"
+    },
+    "children": [
+      {
+        "name": "Most of English grammar comes from German.",
+        "gProps": {
+          "className": "pro-node"
+        },
+        "children": [
+          {
+            "name": "That's obviously true, just look at how screwed up the language is and hard to understand!",
+            "gProps": {
+              "className": "pro-node"
+            }
+          }
+        ]
+      },
+      {
+        "name": "But most of English vocabulary comes from French",
+        "gProps": {
+          "className": "con-node"
+        }
+      },
+      {
+        "name": "It might have come from German but now it is so different as to be not recognizable.",
+        "gProps": {
+          "className": "con-node"
+        },
+        "children": [
+          {
+            "name": "Yeah many languages (all Romance languages) came from Latin but it's hardly fair to say it's \"basically Latin\" that's crazy.",
+            "gProps": {
+              "className": "pro-node"
+            },
+            "children": [
+              {
+                "name": "Well it sort of is true it's a version of Latin, it just really depends how you define a language.",
+                "gProps": {
+                  "className": "con-node"
+                }
+              }
+            ]
+          },
+          {
+            "name": "That's not true you can recognize many features of German in the grammar and even in the vocab.",
+            "gProps": {
+              "className": "con-node"
+            },
+            "children": [
+              {
+                "name": "Maybe on Grammar but vocab is very hard to compare, there are a few holdover words but not really.",
+                "gProps": {
+                  "className": "con-node"
+                },
+                "children": [
+                  {
+                    "name": "Yeah, hand/hent and water/vasser is about it...",
+                    "gProps": {
+                      "className": "pro-node"
+                    },
+                    "children": [
+                      {
+                        "name": "what are you talking about?! there are hundreds of words that are directly from german!",
+                        "gProps": {
+                          "className": "con-node"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yeah if you look at an original of Beowulf, it looks more like German than English and it's an English classic!",
+        "gProps": {
+          "className": "pro-node"
+        },
+        "children": [
+          {
+            "name": "That's hardly fair, most languages change a lot over time and can often be considered a totally different language. ",
+            "gProps": {
+              "className": "con-node"
+            },
+            "children": [
+              {
+                "name": "That's true Portuguese and Spanish are both from Latin but are very different languages.",
+                "gProps": {
+                  "className": "pro-node"
+                },
+                "children": [
+                  {
+                    "name": "Well they are very similar, both Iberian etc., in fact in North/West Spain, Spanish speakers can understand Portuguese!",
+                    "gProps": {
+                      "className": "con-node"
+                    }
+                  },
+                  {
+                    "name": "Most Spanish speakers can't understand Portuguese.",
+                    "gProps": {
+                      "className": "pro-node"
+                    }
+                  },
+                  {
+                    "name": "It's usually very easy for Spanish speakers to learn Port. and vice versa",
+                    "gProps": {
+                      "className": "con-node"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Maybe it should be considered the classic of another language and then you'll have no issue!",
+            "gProps": {
+              "className": "pro-node"
+            }
+          }
+        ]
+      }
+    ]
+  }

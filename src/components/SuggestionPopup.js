@@ -22,7 +22,7 @@ export default function SuggestionPopup(props) {
     return (
         <div>
             <Dialog open={true} onClose={() => console.log("closing suggestion accept/reject")} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title" style={{ textAlign: 'center', backgroundColor: topbarBrown, color: 'white' }}>
+                <DialogTitle id="form-dialog-title" style={{ textAlign: 'center', backgroundColor: topbarBrown, color: 'white', fontFamily: 'Raleway', fontWeight:'bold' }}>
                     <span>PuppyLover123 has a suggestion for you related to the argument</span>
                     <strong> {data.argument}</strong>
                 </DialogTitle>
@@ -32,13 +32,13 @@ export default function SuggestionPopup(props) {
                         In {data.tabIndex === 0 ? 'support of' : 'opposition to'}
                         <br /><br />
                         <Typography variant="h5" component="h5">
-                            '{data.immediateParent}'
+                            "{data.immediateParent}"
                         </Typography>
                         <br /><br />
                         consider: <br /><br />
                         {/* <strong>'{data.suggestion}'</strong> */}
                         <Typography variant="h5" component="h5">
-                            '{data.suggestion}'
+                            "{data.suggestion}"
                         </Typography>
                     </DialogContentText>
                 </DialogContent>
