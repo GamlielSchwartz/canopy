@@ -10,12 +10,15 @@ import { DialogContentText } from '@material-ui/core';
 export default function SeedPopup(props) {
     const [currText, updateText] = useState("");
 
-    const handleAcceptSuggestion = (fromClicked) => {
+    const handleAcceptSuggestion = (fromClicked, fromButton) => {
+        if (fromButton){
+            props.setSeedArgument(currText);
+            return;
+        }
         if (fromClicked) {
             props.setSeedArgument(fromClicked);
             return;
         }
-        props.setSeedArgument(currText);
     }
 
     const handleChangeText = (event) => {
@@ -52,7 +55,7 @@ export default function SeedPopup(props) {
                     <Button onClick={() => props.close()} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleAcceptSuggestion} color="primary">
+                    <Button onClick={()=> handleAcceptSuggestion(true, true)} color="primary">
                         Start
                     </Button>
                 </DialogActions>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Tree from 'react-tree-graph'
 import { Grid } from '@material-ui/core';
+import { imageDefs } from './constants';
 
 function MiniTree(props) {
     const data = {
@@ -70,7 +71,8 @@ function MiniTree(props) {
         ]
     };
 
-    const myData = props.treeData ? props.treeData : data;
+    var myData = props.treeData ? props.treeData : data;
+    myData.gProps.className = 'seed';
 
     return (
         <Grid
@@ -113,15 +115,10 @@ function MiniTree(props) {
                     circleProps={{
                         className: 'ball',
                         transform: 'rotate(270)',
-                        fill: "url(#image1)",
+                        // fill: "url(#image1)",
                     }}
                 >
-                    <defs>
-                        <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">
-                            <image height=".7" weight="1" preserveAspectRatio="none" href={require('./leaf.jpg')}>
-                            </image>
-                        </pattern>
-                    </defs>
+                        {imageDefs}
 
                 </Tree>
             </Grid>

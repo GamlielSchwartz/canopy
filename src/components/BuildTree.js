@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import removeNode from '../utils/removeNode';
 import editNode2 from '../utils/editNode';
 import DemoProCon from './DemoProCon';
+import { imageDefs } from './constants';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -138,7 +139,7 @@ export default function BuildTree(props) {
         const newData = {
             "name": argument,
             "gProps": {
-                "className": 'pro-node',
+                "className": 'seed',
                 "onClick": (event, node) => {
                     onNodeClick(node);
                 },
@@ -239,8 +240,8 @@ export default function BuildTree(props) {
                             </span>
                             :
                             <span
-                            style={{ paddingLeft: 10 }}>
-                            Hover over a leaf to display argument...
+                                style={{ paddingLeft: 10 }}>
+                                Hover over a leaf to display argument...
                         </span>
                         }
                     </Grid>
@@ -264,17 +265,10 @@ export default function BuildTree(props) {
                         circleProps={{
                             className: 'ball',
                             transform: 'rotate(270)',
-                            fill: "url(#image1)",
+                            // fill: "url(#image1)",
                         }}
                     >
-
-
-                        <defs>
-                            <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">
-                                <image height=".7" weight="1" preserveAspectRatio="none" href={require('./leaf.jpg')}>
-                                </image>
-                            </pattern>
-                        </defs>
+                        {imageDefs}
                     </Tree>
                     <img
                         onClick={toggleStumpedStatus}
@@ -298,17 +292,17 @@ export default function BuildTree(props) {
             </Grid>
             <Grid item xs={6}>
                 <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
-                    {nodeUnderMouse && !haveCLickedNode ? <DemoProCon potentialNode={nodeUnderMouse}/> : 
-                    <ProCon
-                        isRoot={toggleNode === data.name}
-                        editNode={editNode}
-                        deleteNode={deleteNode}
-                        onNodeClick={onNodeClick}
-                        parentNode={toggleNode}
-                        addToTree={addToTree}
-                        pros={clickedProChildren}
-                        cons={clickedConChildren}
-                    /> }
+                    {nodeUnderMouse && !haveCLickedNode ? <DemoProCon potentialNode={nodeUnderMouse} /> :
+                        <ProCon
+                            isRoot={toggleNode === data.name}
+                            editNode={editNode}
+                            deleteNode={deleteNode}
+                            onNodeClick={onNodeClick}
+                            parentNode={toggleNode}
+                            addToTree={addToTree}
+                            pros={clickedProChildren}
+                            cons={clickedConChildren}
+                        />}
                 </Paper>
             </Grid>
         </Grid>

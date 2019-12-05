@@ -87,21 +87,21 @@ function ProCon(props) {
                         >
                             {
                                 props.isRoot ? null :
-                                    <Grid item xs={2}>
-                                        <Button
-                                            color="primary"
-                                            onClick={() => toggleEditableNode(true)}
-                                        >
-                                            <EditIcon />
-                                        </Button>
-                                        <Button
-                                            color="primary"
-                                            onClick={() => props.deleteNode(props.parentNode)}
-                                        ><DeleteIcon />
-                                        </Button>
-                                    </Grid>
+                                        <Grid item xs={2}>
+                                            <Button
+                                                color="primary"
+                                                onClick={() => toggleEditableNode(true)}
+                                            >
+                                                <EditIcon />
+                                            </Button>
+                                            <Button
+                                                color="primary"
+                                                onClick={() => props.deleteNode(props.parentNode)}
+                                            ><DeleteIcon />
+                                            </Button>
+                                        </Grid>
                             }
-                            <Grid item xs={10} style={{ fontWeight: 'bold', fontSize: '28px' }}>{props.parentNode}</Grid>
+                            <Grid item xs={props.isRoot ? 12 : 10} style={{ fontWeight: 'bold', fontSize: '28px' }}>{props.parentNode}</Grid>
                         </Grid>
                     }
                 </Grid>

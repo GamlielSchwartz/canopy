@@ -113,7 +113,7 @@ import SuggestionForm from './SuggestionForm';
 
 import React, { useState, useEffect } from 'react';
 import Tree from 'react-tree-graph'
-import { Paper, Grid, Button } from '@material-ui/core';
+import { Paper, Grid, Button, Typography } from '@material-ui/core';
 // import NewNodeForm from './NewNodeForm';
 import addNode from '../utils/addNode';
 import SnackPopup from './SnackPopup';
@@ -123,6 +123,7 @@ import getNode from '../utils/getChildren';
 import { makeStyles } from '@material-ui/core/styles';
 import removeNode from '../utils/removeNode';
 import editNode2 from '../utils/editNode';
+import { imageDefs } from './constants';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -365,7 +366,7 @@ export default function FriendTree(props) {
                 />
                 : null}
 
-            <Grid item xs={12}>
+            <Grid item xs={8}>
                 <Paper className={classes.root}>
                     <Grid
                         container
@@ -375,7 +376,7 @@ export default function FriendTree(props) {
                     >
                         <span>
                             <Button variant="contained" onClick={props.backToHome}>Back to Forest</Button>
-                            <span style={{paddingLeft: 10}}>{nodeUnderMouse}</span>
+                            {/* <span style={{ paddingLeft: 10 }}>{nodeUnderMouse}</span> */}
                         </span>
                     </Grid>
                 </Paper>
@@ -397,17 +398,11 @@ export default function FriendTree(props) {
                         circleProps={{
                             className: 'ball',
                             transform: 'rotate(270)',
-                            fill: "url(#image1)",
+                            // fill: "url(#image1)",
                         }}
                     >
 
-
-                        <defs>
-                            <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">
-                                <image height=".7" weight="1" preserveAspectRatio="none" href={require('./leaf.jpg')}>
-                                </image>
-                            </pattern>
-                        </defs>
+                        {imageDefs}
                     </Tree>
                     {props.fullTree ? null :
                         <img
@@ -427,20 +422,23 @@ export default function FriendTree(props) {
                     }
                 </Paper>
             </Grid>
-            {/* <Grid item xs={6}>
-                    <Paper style={{ height: window.innerHeight, overflow: 'auto' }}>
-                        <ProCon
-                            isRoot={toggleNode === getRealData().name}
-                            editNode={editNode}
-                            deleteNode={deleteNode}
-                            onNodeClick={onNodeClick}
-                            parentNode={toggleNode}
-                            addToTree={addToTree}
-                            pros={clickedProChildren}
-                            cons={clickedConChildren}
-                        />
-                    </Paper>
-                </Grid> */}
+            <Grid item xs={4}>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <Grid item>
+                        <Paper className={classes.root}>
+                            <Typography variant="h4" component="h4">
+                                {nodeUnderMouse}
+                            </Typography>
+                        </Paper>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
+
     );
 }
