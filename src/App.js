@@ -18,6 +18,7 @@ function App() {
     const startingTabVal = 3
     const [currentRoute, setCurrentRoute] = useState('/home');
     const [clickedFriendTree, setClickedFriendTree] = useState();
+    const [clickedTreeCanSuggest, setClickedTreeCanSuggest] = useState(false);
     const [shouldShowAlerts, setShouldShowAlerts] = useState(false);
     const [tabValue, setTabValue] = React.useState(startingTabVal);
     const [showGotAlert, setShowGotAlert] = React.useState(0);
@@ -42,9 +43,11 @@ function App() {
         }
     };
 
-    const handleClickedFriendTree = (data) => {
+    const handleClickedFriendTree = (data, canSuggest) => {
         setShowButton(false);
+        setClickedTreeCanSuggest(canSuggest)
         setClickedFriendTree(data);
+        console.log(canSuggest);
         setCurrentRoute('/friendTree')
     }
 
@@ -132,8 +135,7 @@ function App() {
             >
                 {
                     showButton ? 
-                    
-                        filterToggle ?
+                    <span>
                             <Button
                                 variant="contained"
                                 // color="primary"
@@ -141,7 +143,6 @@ function App() {
                             >
                                 Show Unbalanced Trees
                             </Button>
-                            :
                             <Button
                                 variant="contained"
                                 // color="primary"
@@ -149,9 +150,8 @@ function App() {
                             >
                                 Show All Trees
                             </Button>
-                    
-                    : 
-                    null
+                            </span>
+                    : null
                 }
                 
             </Grid>
@@ -182,6 +182,7 @@ function App() {
                             <FriendTree
                                 backToHome={backToHome}
                                 fullTree={clickedFriendTree}
+                                canSuggest={clickedTreeCanSuggest}
                                 addNotification={addNotification}
                             />}
                     />

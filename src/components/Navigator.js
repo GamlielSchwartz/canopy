@@ -95,7 +95,7 @@ function Navigator(props) {
                 aria-label="disabled tabs example"
             >
                 {/* <span style={{fontWeight:'bold', color:'dark-green', fontSize: 30}}>Canopy</span> */}
-                <Tab label={<span style={{ fontWeight: 'bold', color: '#00e800', fontSize: 30, fontFamily: 'Arvo' }}>Canopy</span>} disabled />
+                <Tab label={<span style={{ fontWeight: 'bold', color: '#00e800', fontSize: 30, fontFamily: 'Arvo', textTransform:'capitalize' }}>Canopy</span>} disabled />
                 <Tab label={<span style={{ fontWeight: 'bold', color: '#005000', fontSize: 30, fontFamily: 'Arvo' }}></span>} disabled />
                 <Tab label={<span style={{ fontWeight: 'bold', color: '#005000', fontSize: 30, fontFamily: 'Arvo' }}></span>} disabled />
 

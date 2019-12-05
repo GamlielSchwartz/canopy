@@ -31,19 +31,31 @@ function Profile(props) {
                 //         />
                 //     </div>
                 //     :
-                    <Paper style={{ maxHeight: window.innerHeight * 1, overflow: 'auto' }}>
-                        <List component="nav" aria-label="main mailbox folders">
-                            <ListItem>
-                                <MiniTree setClickedTree={handleClickedTree} treeData={third} />
-                            </ListItem>
-                            <ListItem>
-                                <MiniTree setClickedTree={handleClickedTree} treeData={second} />
-                            </ListItem>
-                            <ListItem>
-                                <MiniTree setClickedTree={handleClickedTree} treeData={first} />
-                            </ListItem>
-                        </List>
-                    </Paper>
+                <Paper style={{ maxHeight: window.innerHeight * 1, overflow: 'auto' }}>
+                    <List component="nav" aria-label="main mailbox folders">
+                        <ListItem>
+                            <MiniTree
+                                setClickedTree={handleClickedTree}
+                                treeData={third}
+                                custom2={true}
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <MiniTree
+                                setClickedTree={handleClickedTree}
+                                treeData={second}
+                                custom2={true}
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <MiniTree
+                                setClickedTree={handleClickedTree}
+                                treeData={first}
+                                custom2={true}
+                            />
+                        </ListItem>
+                    </List>
+                </Paper>
             }
         </div>
     );

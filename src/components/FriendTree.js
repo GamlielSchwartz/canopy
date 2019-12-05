@@ -135,8 +135,8 @@ export default function FriendTree(props) {
 
     // const [showNewNodeForm, setNewNodeFormOpen] = useState(false);
     // const [clickedNode, setClickedNode] = useState(props.startingPosition)
-    const [clickedProChildren, setClickedProChildren] = useState([]);
-    const [clickedConChildren, setClickedConChildren] = useState([]);
+    // const [clickedProChildren, setClickedProChildren] = useState([]);
+    // const [clickedConChildren, setClickedConChildren] = useState([]);
     const [data, setData] = useState(props.fullTree);
     // const [newNodeFormSide, setNewNodeFormSide] = useState('Pro');
     const classes = useStyles();
@@ -169,8 +169,8 @@ export default function FriendTree(props) {
         // console.log(data)
         // console.log(deletingNode ? "deleting node on" : "deleting node not on")
         if (deletingNode) {
-            setClickedProChildren([]);
-            setClickedConChildren([]);
+            // setClickedProChildren([]);
+            // setClickedConChildren([]);
             setToggleNode(data.name);//reset procon list to root argument
             setDeletingNode(false);
             return;
@@ -185,27 +185,28 @@ export default function FriendTree(props) {
         var clickedNode = getNode(toggleNode, data, this);
         // console.log(clickedNode);
         if (!clickedNode.children) {
-            setClickedProChildren([]);
-            setClickedConChildren([]);
+            // setClickedProChildren([]);
+            // setClickedConChildren([]);
             return;
 
         }
-        var proChildren = clickedNode.children.filter(child => child.gProps.className === 'pro-node');
-        var conChildren = clickedNode.children.filter(child => child.gProps.className === 'con-node');
-        setClickedProChildren(proChildren);
-        setClickedConChildren(conChildren)
+        // var proChildren = clickedNode.children.filter(child => child.gProps.className === 'pro-node');
+        // var conChildren = clickedNode.children.filter(child => child.gProps.className === 'con-node');
+        // setClickedProChildren(proChildren);
+        // setClickedConChildren(conChildren)
         // console.log(proChildren);
         // console.log(conChildren);
     }, [data, toggleNode, deletingNode, editingNode]);
 
-    function addToTree(parent, newChild, tabValue) {
-        console.log(JSON.stringify(data));
-        addNode2(parent, newChild, tabValue)
-        // setNewNodeFormSide(side);
-        // setNewNodeFormOpen(true);
-    }
+    // function addToTree(parent, newChild, tabValue) {
+    //     console.log(JSON.stringify(data));
+    //     addNode2(parent, newChild, tabValue)
+    //     // setNewNodeFormSide(side);
+    //     // setNewNodeFormOpen(true);
+    // }
 
     function onNodeClick(node) {
+        if (!props.canSuggest) return;
         console.log(node);
         setShowSuggestionForm(true);
         // setNewNodeFormOpen(shouldOpenForm);
@@ -389,7 +390,7 @@ export default function FriendTree(props) {
                         width={dimensions.width / 2}
                         svgProps={{
                             transform: 'rotate(270)',
-                            className: 'custom'
+                            className: 'custom2'
                         }}
                         textProps={{
                             transform: 'rotate(90)',

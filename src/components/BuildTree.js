@@ -256,7 +256,7 @@ export default function BuildTree(props) {
                         width={dimensions.width / 2}
                         svgProps={{
                             transform: 'rotate(270)',
-                            className: 'custom'
+                            className: 'custom2'
                         }}
                         textProps={{
                             transform: 'rotate(90)',

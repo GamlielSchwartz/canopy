@@ -3,8 +3,8 @@ import { Paper, List, ListItem, Divider } from '@material-ui/core';
 import MiniTree from './MiniTree';
 function Home(props) {
     console.log(props.treesToDisplay)
-    const handleClickedTree = (data) => {
-        props.setClickedTree(data);
+    const handleClickedTree = (data, canSuggest) => {
+        props.setClickedTree(data, canSuggest);
     }
 
     return (
@@ -19,6 +19,7 @@ function Home(props) {
                                     setClickedTree={handleClickedTree}
                                     treeData={item}
                                     backToHome={props.backToHome}
+                                    isStumped={index % 2 === 0 }
                                 />
                             </ListItem>
                         )

@@ -82,7 +82,7 @@ function MiniTree(props) {
             alignItems="center"
             onClick={(event) => {
                 // if (!props.isStumped) return;
-                return props.setClickedTree(myData)
+                return props.setClickedTree(myData, props.isStumped)
             }}
         >
 
@@ -91,7 +91,7 @@ function MiniTree(props) {
         }}> */}
             <Grid item>
                 {props.isStumped ?
-                    <div style={{position: "absolute", bottom: 0, left: 0 }}>
+                    <div style={{position: "absolute", bottom: 0, left: 0, zIndex: 1000 }}>
                         <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50 }} />
                         {/* <div>They are Stumped! Suggest a Leaf!</div> */}
                     </div>
@@ -104,7 +104,7 @@ function MiniTree(props) {
                     height={300}
                     width={300}
                     svgProps={{
-                        className: 'custom',
+                        className: props.custom2 ? 'custom2' : 'custom',
                         transform: 'rotate(270)',
                         // className: 'mini-tree'
                     }}
@@ -123,7 +123,8 @@ function MiniTree(props) {
                 </Tree>
             </Grid>
             <Grid item>
-                {myData.name}
+                <div style={{marginLeft:15}}>{myData.name}</div>
+                
             </Grid>
         </Grid>
     );
