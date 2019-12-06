@@ -95,6 +95,7 @@ export default function BuildTree(props) {
         addNode2(parent, newChild, tabValue)
     }
     function onNodeClick(node) {
+        highlightNode(node, "HELLO")
         setHasClickedNode(true);
         setToggleNode(node);
     }
@@ -118,6 +119,17 @@ export default function BuildTree(props) {
         );
         var clickable = makeNodesClickable(newTree);
         await setData(clickable);
+    }
+
+    async function highlightNode(nodeToHighlight, newClassName) {
+        console.log("highlighting")
+        var newD = editNode2(nodeToHighlight, data, newClassName);
+        console.log(newD);
+        // setData(makeNodesClickable(newD));
+        // setEditingNode(true);
+        //// setToggleNode(newNode);
+       
+        // await setData(newD);
     }
 
     const [isStumped, setIsStumped] = useState(false);
@@ -312,7 +324,8 @@ export default function BuildTree(props) {
                         {imageDefs}
                     </Tree>
                     <HtmlTooltip
-                        title={
+                        title=
+                        {
                             <React.Fragment>
                                 <Typography color="inherit">{stumpedTTHeader}</Typography>
                                 <hr />
@@ -342,11 +355,10 @@ export default function BuildTree(props) {
                     <span
                         style={
                             {
-
                                 position: "relative",
                                 bottom: -60,
                                 left: 50,
-
+                                fontFamily: 'Lato'
                             }
                         }
                         > Hover over a leaf to view </span>
