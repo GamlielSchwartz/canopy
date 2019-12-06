@@ -48,6 +48,7 @@ function Navigator(props) {
     }
 
     function acceptSuggestion() {
+        props.acceptSuggestion();
         setShowSuggestion(false);
         setNumNotifications(0);
         setHasClickedReject(true);
@@ -86,9 +87,9 @@ function Navigator(props) {
                     handleReject={rejectSuggestion}
                     suggestionData={
                         {
-                            tabIndex: 0,
-                            suggestion: 'He worked really hard and he deserves credit',
-                            immediateParent: 'he does everything without super powers',
+                            tabIndex: 1,
+                            suggestion: 'That might be more impressive but Superman is stronger and objectively better in all ways.',
+                            immediateParent: 'Batman does everything without super powers so is obviously better.',
                             argument: 'Batman is better than superman'
                         }
                     }

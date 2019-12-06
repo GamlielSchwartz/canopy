@@ -176,6 +176,49 @@ export const second = {
     ]
   }
 
+  export const newSuggestion = {
+    "name": "Batman is better than superman",
+    "gProps": {
+      "className": "pro-node"
+    },
+    "children": [
+      {
+        "name": "Batman does everything without super powers so is obviously better.",
+        "gProps": {
+          "className": "pro-node"
+        },
+        "children": [
+          {
+            "name": 'That might be more impressive but Superman is stronger and objectively better in all ways.',
+            "gProps": {
+              "className": "con-node"
+            },
+          }
+        ]
+      },
+      {
+        "name": "super man is a freaking alien",
+        "gProps": {
+          "className": "con-node"
+        },
+        "children": [
+          {
+            "name": "but he grew up on earth so is culturally a human",
+            "gProps": {
+              "className": "con-node"
+            }
+          },
+          {
+            "name": "aliens are cooler than humans",
+            "gProps": {
+              "className": "pro-node"
+            }
+          }
+        ]
+      }
+    ]
+  }
+
   export const third = {
     "name": "Batman is better than superman",
     "gProps": {
@@ -183,10 +226,10 @@ export const second = {
     },
     "children": [
       {
-        "name": "he does everything without super powers",
+        "name": "Batman does everything without super powers so is obviously better.",
         "gProps": {
           "className": "pro-node"
-        }
+        },
       },
       {
         "name": "super man is a freaking alien",

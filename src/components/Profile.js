@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Paper, List, ListItem, Divider } from '@material-ui/core';
 import MiniTree from './MiniTree';
-import { first, second, third } from './dummyTrees';
+import { first, second, third, newSuggestion } from './dummyTrees';
 import BuildTree from './BuildTree';
 
 function Profile(props) {
@@ -15,28 +15,24 @@ function Profile(props) {
         props.changeRoute('/existingTree');
     }
 
-
+    const [currentSuggTree, setCurrentSuggTree] = React.useState(third);
+    React.useEffect(() => {
+        if (props.acceptedSuggestion){
+            setCurrentSuggTree(newSuggestion);
+        }
+      }, [props.acceptedSuggestion]);
 
 
 
     return (
         <div>
             {
-                // clickedTree
-                //     ?
-                //     <div>
-                //         <BuildTree
-                //             existingData={clickedTree}
-                //             backToProfile={props.backToProfile}
-                //         />
-                //     </div>
-                //     :
                 <Paper style={{ maxHeight: window.innerHeight * 1, overflow: 'auto' }}>
                     <List component="nav" aria-label="main mailbox folders">
                         <ListItem>
                             <MiniTree
                                 setClickedTree={handleClickedTree}
-                                treeData={third}
+                                treeData={currentSuggTree}
                                 custom2={true}
                             />
                         </ListItem>

@@ -66,7 +66,10 @@ function App() {
 
     const [numNotifications, setNumNotification] = useState(0);
     const [suggestionData, setSuggestionData] = useState({});
-
+    function acceptSuggestionDummyData(){
+        console.log("accepted")
+        setDidAcceptSuggestion(true);
+    }
     function addNotification(data) {
         console.log(data);
         setSuggestionData(data);
@@ -91,6 +94,7 @@ function App() {
     const [displayTrees, setDisplayTrees] = React.useState(allTreesToDisplay);
     const [filterToggle, setFilterToggle] = React.useState(true);
     const [showButton, setShowButton] = React.useState(true);
+    const [didAcceptSuggestion, setDidAcceptSuggestion] = React.useState(false);
     function filterTrees(shouldFilter) {
         setFilterToggle(!shouldFilter);
         if (shouldFilter) {
@@ -123,6 +127,7 @@ function App() {
                 showAlerts={showAlerts}
             /> */}
             <Navigator
+                acceptSuggestion={acceptSuggestionDummyData}
                 changeRoute={changeRoute}
                 tabValue={tabValue}
                 changeTabVal={changeTabVal}
@@ -198,6 +203,7 @@ function App() {
                         () => <Profile
                             setClickedExistingTree={setClickedExistingTree}
                             changeRoute={changeRoute}
+                            acceptedSuggestion={didAcceptSuggestion}
                         />}
                     />
                     <Redirect to={currentRoute} />

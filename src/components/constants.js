@@ -1,5 +1,5 @@
 import React from 'react';
-export const NUM_SECONDS_UNTIL_ALERT = 60000;
+export const NUM_SECONDS_UNTIL_ALERT = 45000;
 export const imageDefs =     (                    
 <defs>
 <pattern id="image1" x="0" y="0" patternContentUnits="objectBoundingBox" height="100%" width="100%">

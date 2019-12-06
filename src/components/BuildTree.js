@@ -192,7 +192,7 @@ export default function BuildTree(props) {
 
 
     const [stumpedTTHeader, setStumpedTTHeader] = React.useState("Ask for input from other users!");
-    const [stumpedTTBody, setStumpedTTBody] = React.useState("Click this button to let others know you want input and allow them to sent you suggestions.");
+    const [stumpedTTBody, setStumpedTTBody] = React.useState("Click this button to let others know you want input and allow them to send you suggestions.");
 
     function makeNodesClickable(propsData) {
         if (!propsData) return { name: "hello" };
