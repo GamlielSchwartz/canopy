@@ -1,5 +1,5 @@
+
 function recursiveGetPath(match, pathOfNodes, startingTree) {
-    console.log(pathOfNodes)
     if (startingTree['name'] === match) {
         return pathOfNodes;
     }
@@ -14,7 +14,7 @@ function recursiveGetPath(match, pathOfNodes, startingTree) {
     }
 }
 
-function addWithPathToNode(pathToNodeArray, newData, childText, tabValue, self, func) {
+function addWithPathToNode(pathToNodeArray, newData, childText, tabValue) {
     // if (pathToNodeArray.length === 1) return data;
     var cursor = newData;
     while (pathToNodeArray.length !== 1) {
@@ -28,7 +28,7 @@ function addWithPathToNode(pathToNodeArray, newData, childText, tabValue, self, 
             "name": childText,
             "gProps": {
                 "className": proOrConClass,
-                "onClick": func
+                "onClick": null
             }
         })
     } else {
@@ -37,24 +37,29 @@ function addWithPathToNode(pathToNodeArray, newData, childText, tabValue, self, 
                 "name": childText,
                 "gProps": {
                     "className": proOrConClass,
-                    "onClick": func
+                    "onClick": null
                 }
             }];
     }
     return newData;
 }
 
-export default function addNode(parent, childText, tabValue, arrayWithRoot, startingTree, self, func) {
-    console.log("parent");
-    console.log(parent);
-    console.log("arrayWithRoot");
-    console.log(arrayWithRoot);
-    console.log("startingTree")
-    console.log(startingTree)
-    console.log("func");
-    console.log(func);
-    const treeCopy = Object.assign({}, startingTree);
+export default function addNode(parent, childText, tabValue, arrayWithRoot, startingTree) {
+    // console.log("parent");
+    // console.log(parent);
+    // console.log("arrayWithRoot");
+    // console.log(arrayWithRoot);
+    // console.log("startingTree")
+    // console.log(startingTree)
+    // console.log("func");
+    // console.log(func);
+    // const treeCopy = Object.assign({}, startingTree);
+    // console.log("data at start of add node: ")
+    // console.log(startingTree)
+    const treeCopy = JSON.parse(JSON.stringify(startingTree));
     var pathToNode = recursiveGetPath(parent, arrayWithRoot, treeCopy);
-    const newData = Object.assign({}, startingTree);
-    return addWithPathToNode(pathToNode, newData, childText, tabValue, self, func);
+    // const newData = Object.assign({}, startingTree);
+    const retTree = addWithPathToNode(pathToNode, treeCopy, childText, tabValue);
+    // console.log(retTree);
+    return retTree;
 }

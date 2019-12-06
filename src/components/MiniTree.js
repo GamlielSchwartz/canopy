@@ -1,6 +1,7 @@
 import React from 'react';
 import Tree from 'react-tree-graph'
 import { Grid } from '@material-ui/core';
+import { imageDefs } from './constants';
 
 function MiniTree(props) {
     const data = {
@@ -70,6 +71,9 @@ function MiniTree(props) {
         ]
     };
 
+    var myData = props.treeData ? props.treeData : data;
+    myData.gProps.className = 'seed';
+
     return (
         <Grid
             container
@@ -77,7 +81,8 @@ function MiniTree(props) {
             justify="flex-start"
             alignItems="center"
             onClick={(event) => {
-                return props.setClickedTree(data)
+                // if (!props.isStumped) return;
+                return props.setClickedTree(myData, props.isStumped)
             }}
         >
 
@@ -85,46 +90,44 @@ function MiniTree(props) {
             return props.setClickedTree(data)
         }}> */}
             <Grid item>
+                {props.isStumped ?
+                    <div style={{ position: "absolute", bottom: 0, left: 0, zIndex: 1000 }}>
+                        <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50 }} />
+                        {/* <div>They are Stumped! Suggest a Leaf!</div> */}
+                    </div>
+                    : null}
+
                 <Tree
-                    nodeRadius={8}
+                    nodeRadius={14}
                     margins={{ top: 30, bottom: 30, left: 50, right: 50 }}
-                    data={data}
+                    data={myData}
                     height={300}
                     width={300}
                     svgProps={{
+                        className: props.custom2 ? 'custom2' : 'custom',
                         transform: 'rotate(270)',
-                        className: 'mini-tree'
+                        // className: 'mini-tree'
                     }}
                     textProps={{
                         transform: 'rotate(90)',
-                        display: 'none',
+                        className: 'hide-me'
                     }}
                     circleProps={{
-                        className: 'ball'
+                        className: 'ball',
+                        transform: 'rotate(90)',
+                        // fill: "url(#image1)",
                     }}
-                />
-            </Grid>
-            {props.isStumped
-                ?
-                <Grid
-                    item
                 >
-                    <Grid
-                        container
-                        direction="column"
-                        justify="flex-start"
-                        alignItems="flex-start"
-                    >
-                        <Grid item>
-                            Suggest a leaf!
-                        </Grid>
-                        <Grid item>
-                            <img src={require('../stump.png')} alt="alt" style={{ width: 100, height: 50, position: "absolute" }} />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                : null}
+                    {imageDefs}
 
+                </Tree>
+            </Grid>
+            <Grid item>
+                {props.author ? <div style={{ marginLeft: 15 }}>authored by: <strong>{props.author}</strong></div> : 
+                <div style={{ marginLeft: 15 }}>authored by: <strong>you</strong></div>}
+                    <br/>
+                <div style={{ marginLeft: 15 }}><i>{myData.name}</i></div>
+            </Grid>
         </Grid>
     );
 }

@@ -12,11 +12,6 @@ import Tab from '@material-ui/core/Tab';
 
 export default function NewNodeForm(props) {
     const [currText, updateText] = useState("");
-    const [tabValue, setTabValue] = React.useState(0);
-
-    const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
 
     const handleClose = () => {
         props.setNewNodeFormOpen(false);
@@ -24,7 +19,7 @@ export default function NewNodeForm(props) {
 
     const handleSubmit = () => {
         handleClose();
-        props.addNode(props.clickedNode, currText, tabValue);
+        props.addNode(props.clickedNode, currText, props.side === 'Pro' ? 0 : 1);
     }
 
     const handleChangeText = (event) => {
@@ -37,19 +32,14 @@ export default function NewNodeForm(props) {
                 <DialogTitle id="form-dialog-title">Add New Argument</DialogTitle>
                 <DialogContent>
                     <Paper square>
-                        <Tabs
-                            value={tabValue}
-                            indicatorColor="primary"
-                            textColor="primary"
-                            onChange={handleTabChange}
-                            aria-label="disabled tabs example"
-                        >
-                            <Tab label="Supporting... " />
-                            <Tab label="Opposing... " />
-                        </Tabs>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                {props.side === 'Opposing' ? 'Opposing...' : 'Supporting...'}
+                        </DialogContentText>
+                        </DialogContent>
                     </Paper>
                     <DialogContentText>
-                        <br/>
+                        <br />
                         {props.clickedNode}
                     </DialogContentText>
                     <TextField

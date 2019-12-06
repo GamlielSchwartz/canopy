@@ -77,11 +77,6 @@ MySnackbarContentWrapper.propTypes = {
   variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
 };
 
-const useStyles2 = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
 
 export default function SnackPopup(props) {
 
@@ -102,7 +97,7 @@ export default function SnackPopup(props) {
       >
         <MySnackbarContentWrapper
           onClose={handleClose}
-          variant="success"
+          variant={props.type?props.type:"success"}
           message={props.message}
         />
       </Snackbar>

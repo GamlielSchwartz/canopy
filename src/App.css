@@ -12,28 +12,78 @@ div.custom-container {
 svg.custom .node text {
 	font-size: 11px;
 	background-color: #444;
-	fill: #F4F4F4;
+	/* fill: #F4F4F4; */
   text-shadow: 0 1px 4px black;
   width: 100%;
   height: 100%;
 }
 
-svg.custom .node {
+svg.custom2 .node text {
+	font-size: 11px;
+	background-color: #444;
+	/* fill: #F4F4F4; */
+  text-shadow: 0 1px 4px black;
+  width: 100%;
+  height: 100%;
+}
+
+.tabLabel {
+  font-weight: 'bold';
+}
+
+svg.custom  {
   cursor: pointer;
+}
+svg.custom2  {
+  cursor: pointer;
+}
+
+svg.custom:hover {
+  cursor: pointer;
+  background-color: #e8e8e8;
 }
 
 svg.custom path.link {
 	fill: none;
-	stroke: #2593B8;
-	stroke-width: 1.5px;
+  /* stroke: #2593B8; */
+  stroke: #8B0000;
+	stroke-width: 1.7px;
 }
 
-.con-node {
+svg.custom2 path.link {
+	fill: none;
+  /* stroke: #2593B8; */
+  stroke: #8B0000;
+	stroke-width: 1.7px;
+}
+
+/* .con-node {
   fill: red;
+  stroke: red;
+	stroke-width: 4px;
 }
 
 .pro-node {
   fill: green;
+  stroke: green;
+  stroke-width: 4px;
+  
+} */
+
+.con-node {
+  fill: url('#image2');
+	stroke-width: 4px;
+}
+.pro-node {
+  fill: url('#image1');
+  stroke-width: 4px;
+  
+}
+
+.seed {
+  fill: url('#seed');
+  stroke-width: 4px;
+  
 }
 
 .ball {
@@ -48,6 +98,15 @@ text {
 
 }
 
+.test {
+  color:white;
+  opacity: 1;
+}
+
+.hide-me {
+  display: none;
+}
+
 img {
   cursor: pointer;
 }
@@ -56,4 +115,8 @@ svg.mini-tree {
   fill: none;
   stroke: black;
   stroke-width: 1.5px;
+}
+
+u {
+  cursor: pointer;
 }
