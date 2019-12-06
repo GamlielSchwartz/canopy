@@ -184,7 +184,7 @@ export default function BuildTree(props) {
             backgroundColor: '#f5f5f9',
             color: 'rgba(0, 0, 0, 0.87)',
             maxWidth: 220,
-            fontSize: theme.typography.pxToRem(12),
+            fontSize: theme.typography.pxToRem(15),
             fontFamily: 'Lato',
             border: '1px solid #dadde9',
         },
@@ -264,10 +264,10 @@ export default function BuildTree(props) {
                                 </Grid>
                                 : null}
                             <Grid item>
-                                <span style={{ fontFamily: 'Lato' }}>
+                            <span style={{ fontFamily: 'Lato', fontSize: 24, marginLeft: 10, textAlign: 'center', verticalAlign: 'middle' }}> <strong>{data.name}</strong></span>
                             
-                                Hover over a leaf to display argument...
-                                </span>
+                                {/* Hover over a leaf to display argument...
+                                </span> */}
                                 </Grid>
                             <Grid item>
                                 <HtmlTooltip
@@ -339,6 +339,17 @@ export default function BuildTree(props) {
                             }
                         />
                     </HtmlTooltip>
+                    <span
+                        style={
+                            {
+
+                                position: "relative",
+                                bottom: -60,
+                                left: 50,
+
+                            }
+                        }
+                        > Hover over a leaf to view </span>
                 </Paper>
             </Grid>
             <Grid item xs={6}>

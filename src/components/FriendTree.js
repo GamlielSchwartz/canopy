@@ -378,6 +378,7 @@ export default function FriendTree(props) {
                         <span>
                             <Button variant="contained" onClick={props.backToHome}>Back to Forest</Button>
                             {/* <span style={{ paddingLeft: 10 }}>{nodeUnderMouse}</span> */}
+                            <span style={{ fontFamily: 'Lato', fontSize: 24, marginLeft: 10, textAlign: 'center', verticalAlign: 'middle' }}> <strong>{getRealData().name}</strong></span>
                         </span>
                     </Grid>
                 </Paper>

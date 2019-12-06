@@ -138,7 +138,7 @@ function App() {
                 justify="center"
                 alignItems="center"
             >
-                {
+                {/* {
                     showButton ? 
                     filterToggle ?
                             <Button
@@ -157,7 +157,7 @@ function App() {
                                 Show All Trees
                             </Button>
                     : null
-                }
+                } */}
                 
             </Grid>
             <Grid
